@@ -1,0 +1,2803 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "Broodwar"
+    </assembly>
+    <members>
+        <member name="M:BroodWar.AiBase.OnUnitRenegade(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when an accessible unit changes ownership
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitMorph(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when a unit changes type, such as from a Zerg Drone to a Zerg Hatchery, or from a Terran Siege Tank Tank Mode to Terran Siege
+Tank Siege Mode. This is not called when the type changes to or from UnitTypes::Unknown (which happens when a unit becomes visible or invisible)
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitDestroy(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when a unit dies or otherwise removed from the game (i.e. a mined out mineral patch). When a zerg drone becomes an extractor,
+the Vespene geyser changes to the Zerg Extractor type and the drone is removed. If Complete Map Information is enabled, this will also be
+called for units that are hidden by the fog of war. If a unit that was visible gets destroyed, onUnitHide will be called right before onUnitDestroy
+is called
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitCreate(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when a unit is created. Note that this is NOT called when a unit changes type (such as larva into egg or egg into drone).
+Building a refinery/assimilator/extractor will not produce an onUnitCreate call since the vespene geyser changes to the unit type of the
+refinery/assimilator/extractor. If Complete Map Information is enabled, this will also be called for new units that are hidden by the fog
+of war. If the unit is visible upon creation, onUnitShow will be called shortly after onUnitCreate is called
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitHide(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this right before a unit becomes invisible, so if you want your non-cheating AI to remember where it last saw a unit, this callback
+would be a good place to implement it. The complete map information flag has no effect on this callback
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitShow(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this the instant a previously invisible unit becomes visible. The complete map information flag has no effect on this callback
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitEvade(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when a unit becomes inaccessible
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnUnitDiscover(BroodWar.Api.Unit)">
+            <summary>
+BWAPI calls this when a unit becomes accessible
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnNukeDetect(BroodWar.Api.Position)">
+            <summary>
+BWAPI calls this when a nuclear launch has been detected. If the target position is visible, or if Complete Map Information is enabled,
+the target position will also be provided. If Complete Map Information is disabled and the target position is not visible, target will
+be set to Positions::Unknown
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnPlayerLeft(BroodWar.Api.Player)">
+            <summary>
+BWAPI calls this when a player leaves the game
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnReceiveText(BroodWar.Api.Player,System.String)">
+            <summary>
+BWAPI calls this when another player sends a message
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnSendText(System.String)">
+            <summary>
+If Flag::UserInput is enabled, BWAPI will call this each time a user enters a message into the chat
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnFrame">
+            <summary>
+BWAPI calls this on every logical frame in the game
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnEnd(System.Boolean)">
+            <summary>
+BWAPI calls this at the end of the match. isWinner will be true if the AIModule won the game. If the game is a replay, isWinner will always be false.
+</summary>
+        </member>
+        <member name="M:BroodWar.AiBase.OnStart">
+            <summary>
+BWAPI calls this at the start of a match. Typically an AI will execute set up code in this method (initialize data structures, load build orders, etc)
+</summary>
+        </member>
+        <member name="T:BroodWar.AiBase">
+            <summary>
+AiBase is a abstract class that is intended to be implemented or inherited by a custom AI class.
+</summary>
+            <remarks>
+Using BWAPI in a different thread than the default one will produce unexpected results and possibly crash the program.
+Multi-threaded AIs are possible so long as all BWAPI interaction is limited to the default thread (during one of the call-backs). 
+</remarks>
+        </member>
+        <member name="M:BroodWar.TournamentBase.OnFirstAdvertisement">
+            <summary>
+BWAPI calls this when this module was the first to send out its tournament advertisement. It
+can prevent both modules from performing the same task if it's necessary
+</summary>
+        </member>
+        <member name="M:BroodWar.TournamentBase.OnAction(BroodWar.Api.Enum.TournamentAction,System.IntPtr)">
+            <summary>
+BWAPI calls this any time some Game-related functions are called. Return true to allow them,
+or false to disallow them. This includes functions like Game::pauseGame and Game::enableFlag
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetDamageTo(BroodWar.Api.UnitType,BroodWar.Api.UnitType,BroodWar.Api.Player,BroodWar.Api.Player)">
+            <summary>
+Gets the damage to a unit from another (usually yours)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetDamageFrom(BroodWar.Api.UnitType,BroodWar.Api.UnitType,BroodWar.Api.Player,BroodWar.Api.Player)">
+            <summary>
+Gets the damage from a unit to another (usually yours)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetBuildLocation(BroodWar.Api.UnitType,BroodWar.Api.TilePosition,System.Int32,System.Boolean)">
+            <summary>
+Gets a build location for a unit type near a position within a range, on or off creep
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetRevealAll(System.Boolean)">
+            <summary>
+Enables or disables the Fog of War in a replay
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.LastEventTime">
+            <summary>
+Returns the time taken to perform the previous event call. Used for tournament management
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetRegionAt(BroodWar.Api.Position)">
+            <summary>
+Returns the region at a position
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetRegionAt(System.Int32,System.Int32)">
+            <summary>
+Returns the region at a position
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.AllRegions">
+            <summary>
+Returns the set of all map regions
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.CountdownTimer">
+            <summary>
+Returns the remaining countdown time in seconds
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetCommandOptimizationLevel(System.Int32)">
+            <summary>
+Sets the level of command optimizations.
+0 = No optimization.
+1 = Some optimization    (Stop, Hold Position, Siege, Burrow, etc.).
+2 = More optimization    (Train, Set Rally, Lift, [multi-select buildings]).
+3 = Maximum optimization (Attack/Move to position, use ability at position, etc.)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.ElapsedTime">
+            <summary>
+Returns the elapsed game time in seconds
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetVision(BroodWar.Api.Player,System.Boolean)">
+            <summary>
+Sets the BWAPI player's vision with another player
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetAlliance(BroodWar.Api.Player,System.Boolean,System.Boolean)">
+            <summary>
+Sets the BWAPI player's alliance with another player
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPath(BroodWar.Api.Position,BroodWar.Api.Position)">
+            <summary>
+Returns true if Starcraft can find a path from the source to the destination
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetFrameSkip(System.Int32)">
+            <summary>
+Sets the frame skip value. 1 = normal
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetMap(System.String)">
+            <summary>
+Changes the map to the one specified. Changes do not take effect unless the game is restarted
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetApm(System.Boolean)">
+            <summary>
+Retrieves the bot's APM. Can include or exclude select commands
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.InstanceNumber">
+            <summary>
+Retrieves the instance number recorded by BWAPI to identify which instance an AI module belongs to
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetGui(System.Boolean)">
+            <summary>
+Sets the rendering state of the Starcraft GUI
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.ReplayFrameCount">
+            <summary>
+Retrieves the number of frames in the replay
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetLatCom(System.Boolean)">
+            <summary>
+Use to enable or disable latency compensation. Default: Enabled
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsLatComEnabled">
+            <summary>
+Returns true if latency compensation is enabled
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsDebug">
+            <summary>
+Retrieves the debug state of the BWAPI build
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Revision">
+            <summary>
+Retrieves the current revision of BWAPI
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.LatencyFrames">
+            <summary>
+Retrieves latency values for the game. Includes latency, speed, and mode
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawLine(BroodWar.Api.Position,BroodWar.Api.Position,System.Drawing.Color)">
+            <summary>
+Draws a line on the screen from a to b with the given color
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawDot(BroodWar.Api.Position,System.Drawing.Color)">
+            <summary>
+Draws a dot on the screen at the given position with the given color
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawEllipse(BroodWar.Api.Position,System.Int32,System.Int32,System.Drawing.Color,System.Boolean)">
+            <summary>
+Draws an ellipse on the screen, with the given color. If isSolid is true, a solid ellipse is drawn, otherwise just the outline of an ellipse will be drawn
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawCircle(BroodWar.Api.Position,System.Int32,System.Drawing.Color,System.Boolean)">
+            <summary>
+Draws a circle on the screen, with the given color. If isSolid is true, a solid circle is drawn, otherwise just the outline of a circle will be drawn
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawTriangle(BroodWar.Api.Position,BroodWar.Api.Position,BroodWar.Api.Position,System.Drawing.Color,System.Boolean)">
+            <summary>
+Draws a triangle on the screen. If isSolid is true, a solid triangle is drawn, otherwise just the outline of the triangle will be drawn
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawBox(BroodWar.Api.Position,BroodWar.Api.Position,System.Drawing.Color,System.Boolean)">
+            <summary>
+Draws a box on the screen, with the given color. If isSolid is true, the entire box will be rendered, otherwise just the outline will be drawn
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.DrawText(BroodWar.Api.Position,System.String,System.Object[])">
+            <summary>
+Draws text on the screen at the given position. Text can be drawn in different colors by using the following control characters: TODO: add image from wiki
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Observers">
+            <summary>
+Returns a set of all the observer players that have not left
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Enemies">
+            <summary>
+Returns a set of all the enemy players that have not left or been defeated
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Allies">
+            <summary>
+Returns a set of all the ally players that have not left or been defeated. Does not include self
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Neutral">
+            <summary>
+Returns a pointer to the neutral player
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Enemy">
+            <summary>
+Returns a pointer to the enemy player. If there is more than one enemy, this returns a pointer to just one enemy (see enemies to get all enemies
+still in game). In replays this will return NULL
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Self">
+            <summary>
+Returns a pointer to the player that BWAPI controls. In replays this will return null
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.GetSelectedUnits">
+            <summary>
+Returns the set of units currently selected by the user in the GUI. If Flag?::UserInput? was not enabled during the AIModule::onStart callback,
+this function will always return an empty set
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IssueCommand(System.Collections.Generic.List`1{BroodWar.Api.Unit},BroodWar.Api.UnitCommand)">
+            <summary>
+Issues a command to a group of units
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetLocalSpeed(System.Int32)">
+            <summary>
+Sets the speed of the game to the given number. Lower numbers are faster. 0 is the fastest speed StarCraft can handle (which is about as
+fast as the fastest speed you can view a replay at). Any negative value will reset the speed to the StarCraft default
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.RestartGame">
+            <summary>
+Restarts the match. Works the same way as if you restarted the match from the menu screen. Only available in single player mode
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.LeaveGame">
+            <summary>
+Leaves the current match and goes to the after-game stats screen
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.ResumeGame">
+            <summary>
+Resumes the game
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.PauseGame">
+            <summary>
+Pauses the game. If the game is paused, Game::getFrameCount will not increase however AIModule::onFrame will still be called while paused
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsReplay">
+            <summary>
+Returns true if Broodwar is in a replay
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsPaused">
+            <summary>
+Returns true if Broodwar is paused. If the game is paused, Game::getFrameCount will continue to increase and AIModule::onFrame will still
+be called while paused
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsBattleNet">
+            <summary>
+Returns true if Broodwar is in a BNet multiplayer game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsMultiplayer">
+            <summary>
+Returns true if Broodwar is in a multiplayer game. Returns false for single player games and replays
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.IsInGame">
+            <summary>
+Returns true if Broodwar is in a game. Returns false for lobby and menu screens
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SendText(System.Boolean,System.String,System.Object[])">
+            <summary>
+Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen.
+If the game is a single player match and not a replay, then this function can be used to execute cheat codes, i.e. Broodwar-&gt;sendText("show me the money")
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SendText(System.String,System.Object[])">
+            <summary>
+Sends text to other players - as if it were entered in chat. In single player games and replays, this will just print the text on the screen.
+If the game is a single player match and not a replay, then this function can be used to execute cheat codes, i.e. Broodwar-&gt;sendText("show me the money")
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.Write(System.String,System.Object[])">
+            <summary>
+Prints text on the screen. Text is not sent to other players in multiplayer games
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.StartLocations">
+            <summary>
+Returns the set of starting locations for the given map. To determine the starting location for the players in the current match,
+see Player::getStartLocation
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.CanUpgrade(BroodWar.Api.Enum.UpgradeType,BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Returns true if the AI player has enough resources required to upgrade the given upgrade type. If unit is not null, canUpgrade will return true
+only if the given unit can upgrade the given upgrade type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.CanResearch(BroodWar.Api.Enum.TechType,BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Returns true if the AI player has enough resources required to research the given tech type. If unit is not null, canResearch will return true
+only if the given unit can research the given tech type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.CanMake(BroodWar.Api.Enum.UnitType,BroodWar.Api.Unit)">
+            <summary>
+Returns true if the AI player has enough resources, supply, tech, and required units in order to make the given unit type. If builder is not null,
+canMake will return true only if the builder unit can build the given unit type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.CanBuildHere(BroodWar.Api.TilePosition,BroodWar.Api.Enum.UnitType,BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Returns true if the given unit type can be built at the given build tile position. Note the tile position specifies the top left tile
+of the building. If builder is not null, the unit will be discarded when determining whether or not any ground units are blocking the build location
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPowerPrecise(BroodWar.Api.Position,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given pixel location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPowerPrecise(System.Int32,System.Int32,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given pixel location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPower(BroodWar.Api.TilePosition,System.Int32,System.Int32,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given build location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPower(System.Int32,System.Int32,System.Int32,System.Int32,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given build location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPower(BroodWar.Api.TilePosition,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given build location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasPower(System.Int32,System.Int32,BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the given build location is powered by a nearby friendly pylon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasCreep(BroodWar.Api.TilePosition)">
+            <summary>
+Returns true if the specified build tile has zerg creep on it. If the tile is concealed by fog of war, the function will return false
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.HasCreep(System.Int32,System.Int32)">
+            <summary>
+Returns true if the specified build tile has zerg creep on it. If the tile is concealed by fog of war, the function will return false
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsExplored(BroodWar.Api.TilePosition)">
+            <summary>
+Returns true if the specified build tile has been explored (i.e. was visible at some point in the match)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsExplored(System.Int32,System.Int32)">
+            <summary>
+Returns true if the specified build tile has been explored (i.e. was visible at some point in the match)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsVisible(BroodWar.Api.TilePosition)">
+            <summary>
+Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsVisible(System.Int32,System.Int32)">
+            <summary>
+Returns true if the specified build tile is visible. If the tile is concealed by fog of war, the function will return false
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsBuildable(BroodWar.Api.TilePosition,System.Boolean)">
+            <summary>
+Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units
+on the tile to see if its currently buildable. To do this, see unitsOnTile
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsBuildable(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+Returns true if the specified build tile is buildable. Note that this just uses the static map data. You will also need to make sure no ground units
+on the tile to see if its currently buildable. To do this, see unitsOnTile
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetGroundHeight(BroodWar.Api.TilePosition)">
+            <summary>
+Returns the ground height of the given build tile. 0 = normal, 1 = high ground. 2 = very high ground
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetGroundHeight(System.Int32,System.Int32)">
+            <summary>
+Returns the ground height of the given build tile. 0 = normal, 1 = high ground. 2 = very high ground
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsWalkable(BroodWar.Api.WalkPosition)">
+            <summary>
+Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates).
+Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its
+currently walkable. To do this, see unitsOnTile
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsWalkable(System.Int32,System.Int32)">
+            <summary>
+Returns true if the specified walk tile is walkable. The values of x and y are in walk tile coordinates (different from build tile coordinates).
+Note that this just uses the static map data. You will also need to make sure no ground units are on the coresponding build tile to see if its
+currently walkable. To do this, see unitsOnTile
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapHash">
+            <summary>
+Returns the SHA-1 hash of the map file
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapName">
+            <summary>
+Returns the name/title of the current map
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapPathName">
+            <summary>
+Returns the full path name of the current map
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapFileName">
+            <summary>
+Returns the file name of the current map
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapHeight">
+            <summary>
+Returns the height of the current map, in build tile units. To get the height of the current map in walk tile units, multiply by 4.
+To get the height of the current map in Position units, multiply by TILE_SIZE (which is 32)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MapWidth">
+            <summary>
+Returns the width of the current map, in build tile units. To get the width of the current map in walk tile units, multiply by 4.
+To get the width of the current map in Position units, multiply by TILE_SIZE (which is 32)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.LastError">
+            <summary>
+Returns the last error that was set. If you try to order enemy units around, or morph bunkers into lurkers, BWAPI will set error codes,
+which can be retrieved using this function
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsInRadius(BroodWar.Api.Position,System.Int32)">
+            <summary>
+Returns the set of accessible units within or overlapping a circle at the given point with the given radius
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsInRadius(System.Int32,System.Int32,System.Int32)">
+            <summary>
+Returns the set of accessible units within or overlapping a circle at the given point with the given radius
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsInRectangle(BroodWar.Api.Position,BroodWar.Api.Position)">
+            <summary>
+Returns the set of accessible units that are in or overlapping the given rectangle
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsInRectangle(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+Returns the set of accessible units that are in or overlapping the given rectangle
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsOnTile(BroodWar.Api.TilePosition)">
+            <summary>
+Returns the set of accessible units that are on the given build tile
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitsOnTile(System.Int32,System.Int32)">
+            <summary>
+Returns the set of accessible units that are on the given build tile
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.EnableFlag(BroodWar.Api.Enum.Flag)">
+            <summary>
+Enables the specified flag. Note that flags can only be enabled at the beginning of a match, during the AIModule::onStart callback
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IsFlagEnabled(BroodWar.Api.Enum.Flag)">
+            <summary>
+Returns true if the given flag has been enabled. Note that flags can only be enabled at the beginning of a match, during the AIModule::onStart callback
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.PingMinimap(BroodWar.Api.Position)">
+            <summary>
+Pings the given position on the minimap
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.PingMinimap(System.Int32,System.Int32)">
+            <summary>
+Pings the given position on the minimap
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetScreenPosition(BroodWar.Api.Position)">
+            <summary>
+Moves the screen to the given position on the map. The position specified where the top left corner of the screen will be
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.SetScreenPosition(System.Int32,System.Int32)">
+            <summary>
+Moves the screen to the given position on the map. The position specified where the top left corner of the screen will be
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.ScreenPosition">
+            <summary>
+Returns the position of the top left corner of the screen on the map. Returns Positions::Unknown if Flag::UserInput is disabled
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetKeyState(BroodWar.Api.Enum.Key)">
+            <summary>
+Returns true if the specified key is pressed. Returns false if Flag::UserInput is disabled. Unfortunately this does not read the
+raw keyboard input yet - when you hold down a key, the getKeyState function is true for a frame, then false for a few frames, and
+then alternates between true and false (as if you were holding down the key in a text box). Hopefully this will be fixed in a later version
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetMouseState(BroodWar.Api.Enum.MouseButton)">
+            <summary>
+Returns true if the specified mouse button is pressed. Returns false if Flag::UserInput is disabled
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.MousePosition">
+            <summary>
+Returns the position of the mouse on the screen. Returns Positions::Unknown if Flag::UserInput is disabled
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.AverageFps">
+            <summary>
+Returns the Frames Per Second (FPS) that the game is currently running at
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Fps">
+            <summary>
+Returns the Frames Per Second (FPS) that the game is currently running at
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.FrameCount">
+            <summary>
+Returns the number of logical frames since the match started. If the game is paused, Game::getFrameCount will not increase however
+AIModule::onFrame will still be called while paused. On Fastest, there are about 23.8 - 24 frames per second
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Latency">
+            <summary>
+Returns the amount of latency the current game has. Currently only returns Latency::SinglePlayer, Latency::LanLow,
+Latency::LanMedium, or Latency::LanHigh
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.GameType">
+            <summary>
+Returns the game type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.Region(System.Int32)">
+            <summary>
+Returns the Region with the given ID, or NULL if no region has the given ID
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.IndexToUnit(System.Int32)">
+            <summary>
+Returns a pointer to a Unit given an index
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetUnitById(System.Int32)">
+            <summary>
+Returns the unit with the given ID, or NULL if no unit has the given ID
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetPlayerById(System.Int32)">
+            <summary>
+Returns the player with the given ID, or NULL if no player has the given ID
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Game.GetForceById(System.Int32)">
+            <summary>
+Returns the force with the given ID, or NULL if no force has the given ID
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Events">
+            <summary>
+Returns the list of events
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.NukeDots">
+            <summary>
+Returns all visible nuke dots. If Flag::CompleteMapInformation is enabled, the set of all nuke dots is returned, not just visible ones
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Bullets">
+            <summary>
+Returns all visible bullets. If Flag::CompleteMapInformation is enabled, the set of all bullets is returned, not just visible ones
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.StaticNeutralUnits">
+            <summary>
+Returns the set of all neutral units (including mined out and other inaccessible ones)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.StaticGeysers">
+            <summary>
+Returns the set of all vespene geysers (including mined out and other inaccessible ones)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.StaticMinerals">
+            <summary>
+Returns the set of all mineral patches (including mined out and other inaccessible ones)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.NeutralUnits">
+            <summary>
+Returns the set of all accessible neutral units
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Geysers">
+            <summary>
+Returns the set of all accessible vespene geysers
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Minerals">
+            <summary>
+Returns the set of all accessible mineral patches
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.AllUnits">
+            <summary>
+Returns all the visible units. If Flag::CompleteMapInformation is enabled, the set of all units is returned, not just visible ones.
+Note that units inside refineries are not included in this set yet
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Players">
+            <summary>
+Returns the set of all players in the match. Note that this includes the Neutral player, which owns all the neutral units such as
+minerals, critters, etc
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Game.Forces">
+            <summary>
+Returns the set of all forces in the match
+</summary>
+        </member>
+        <member name="T:BroodWar.Api.Game">
+            <summary>
+The abstract Game class is implemented by BWAPI and offers many methods for retrieving information about the current Broodwar game,
+including the set of players, units, map information, as well as information about the user, such as mouse position, screen position,
+and the current selection of units
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.CoordinateType.Mouse">
+            <summary>
+(0,0) corresponds to the tip of the mouse
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.CoordinateType.Map">
+            <summary>
+(0,0) corresponds to the top left corner of the map
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.CoordinateType.Screen">
+            <summary>
+(0,0) corresponds to the top left corner of the screen
+</summary>
+        </member>
+        <member name="T:BroodWar.Api.Enum.ErrorType">
+            <summary>
+Functions in BWAPI may set an error code. To retrieve the error code, call Game::getLastError
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.Unknown">
+            <summary>
+Used when the error code is not recognized or can not be determined
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.None">
+            <summary>
+Used when no error has been encountered
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InvalidParameter">
+            <summary>
+Used for bad parameters, like passing NULL or an empty string
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.FileNotFound">
+            <summary>
+Used when a file can't be found
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.AccessDenied">
+            <summary>
+Returned if you try to get information that is not allowed with the given flag settings. For example, trying to read
+the enemy's resource counts while the CompleteMapInformation?  flag is not enabled will return this error. Similarly,
+trying to read the coordinates of the screen or mouse while the UserInput flag is not enabled will also return this error
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnableToHit">
+            <summary>
+Returned if you do something like order a Vulture to attack a flying unit
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.OutOfRange">
+            <summary>
+Returned if you order an immovable unit, like a Protoss Photon Cannon, to attack a unit that is out of range
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnreachableLocation">
+            <summary>
+Returned if you try to construct a building where the worker cannot reach based on static map data
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnbuildableLocation">
+            <summary>
+Returned if you try to construct a building on an unbuildable location
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InvalidTilePosition">
+            <summary>
+Returned if you try to build a barracks at TilePositions::None or something similar
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientSpace">
+            <summary>
+Returned if you try to train more Interceptors than the Carrier can hold, try to train more Scarabs than a Reaver can hold,
+or try to load more units into a transport than there is space
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientAmmo">
+            <summary>
+Returned if you do something like try to lay Spider Mines when your Vulture is out of Spider Mines. Same thing with Reavers and Scarabs
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientTech">
+            <summary>
+Returned if you do something like try to train Medics when you don't have an Academy, or try to lay Spider Mines before
+spider mines have been researched
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientEnergy">
+            <summary>
+Returned if you to do something like try to order a Defiler to cast a Dark Swarm without enough energy
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientSupply">
+            <summary>
+Returned if you try to train something without enough supply
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientGas">
+            <summary>
+Returned if you try to train or build something without enough vespene gas
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.InsufficientMinerals">
+            <summary>
+Returned if you try to train or build something without enough minerals
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.CurrentlyUpgrading">
+            <summary>
+Returned if you try to upgrade something that is already being upgraded
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.CurrentlyResearching">
+            <summary>
+Returned if you try to research something that is already being researched
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.FullyUpgraded">
+            <summary>
+Returned if you try to upgrade something that is already fully upgraded
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.AlreadyResearched">
+            <summary>
+Returned if you try to research something that is already researched
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.IncompatibleState">
+            <summary>
+Returned if you to do something like try to cancel an upgrade when the unit isn't upgrading
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.IncompatibleTechType">
+            <summary>
+Returned when trying to use a tech type with the wrong Unit::useTech method
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.IncompatibleUnitType">
+            <summary>
+Returned if you do something weird like try to build a Pylon with an SCV, or train Vultures in a Barracks, or order a Hydralisk to lay a spider mine
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnitBusy">
+            <summary>
+Returned when trying to order a unit to do something when it is performing another order or is in a
+state which prevents it from performing the desired order. For example, ordering a Terran Engineering
+Bay to upgrade something while it is already upgrading something else will return this error.
+Similarly, trying to train units from a factory that is lifted will return this error
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnitNotOwned">
+            <summary>
+Returned when attempting to order a unit that BWAPI does not own (i.e. can't order enemy army to go away)
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnitNotVisible">
+            <summary>
+Returned if you try to retrieve information about a unit that is not currently visible or is dead
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.ErrorType.UnitDoesNotExist">
+            <summary>
+Returned if you try to order a unit or get information from a unit that no longer exists
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.Flag.UserInput">
+            <summary>
+Enable to get information from the user (what units are selected, chat messages the user enters, etc)
+</summary>
+        </member>
+        <member name="F:BroodWar.Api.Enum.Flag.CompleteMapInformation">
+            <summary>
+Enable to get information about all units on the map, not just the visible units
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsUnitAvailable(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns true if the unit is available for the player to build (Use Map Settings)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsResearchAvailable(BroodWar.Api.Enum.TechType)">
+            <summary>
+Returns true if the research is available for the player to research (Use Map Settings)
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.GetMaxUpgradeLevel(BroodWar.Api.Enum.UpgradeType)">
+            <summary>
+Returns the maximum upgrades available specific to the player (Use Map Settings)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.IsObserver">
+            <summary>
+Returns true if the Player is only observing the game, and not participating
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.CustomScore">
+            <summary>
+Returns the Player's Custom Score
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.RazingScore">
+            <summary>
+Returns the Player's Total Razings Score
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.BuildingScore">
+            <summary>
+Returns the Player's Total Buildings Score
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.KillScore">
+            <summary>
+Returns the Player's Total Kill Score
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.UnitScore">
+            <summary>
+Returns the Player's Total Unit Score
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.Armor(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the armor of the given unit type, includes upgrades
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.WeaponDamageCooldown(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the weapon cooldown of the given unit type, includes upgrades
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.SightRange(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the sight range of the given unit type, includes upgrades
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.WeaponMaxRange(BroodWar.Api.Weapon)">
+            <summary>
+Returns the max range of the given weapon with upgrades
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.TopSpeed(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the top speed of the given unit type, includes upgrades
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.MaxEnergy(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the max energy of the given unit type, taking into account upgrades
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.TextColor">
+            <summary>
+Returns the color of the player for text messages
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Color">
+            <summary>
+Returns the color of the player for drawing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsUpgrading(BroodWar.Api.Enum.UpgradeType)">
+            <summary>
+Returns true if the player is upgrading the given upgrade. To order a unit to upgrade a given upgrade type, see Unit::upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsResearching(BroodWar.Api.Enum.TechType)">
+            <summary>
+Returns true if the player is researching the given tech. To order a unit to research a given tech type, see Unit::reseach
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.HasResearched(BroodWar.Api.Enum.TechType)">
+            <summary>
+Returns true if the player has finished researching the given tech. To order a unit to research a given tech type, see Unit::research
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.GetUpgradeLevel(BroodWar.Api.Enum.UpgradeType)">
+            <summary>
+Returns the player's current upgrade level of the given upgrade. To order a unit to upgrade a given upgrade type, see Unit::upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.KilledUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of killed units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.DeadUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of dead units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IncompleteUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of incomplete units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.CompletedUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of completed units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.VisibleUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of visible units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.AllUnitCount(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Returns the number of all accessible units of the given type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.GetSupplyUsed(BroodWar.Api.Race)">
+            <summary>
+Returns how much of the supply is actually being used by units. If a race is provided, the used supply for the given race will be returned,
+otherwise the player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game.
+This is because zerglings take up 0.5 in-game supply
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.SupplyUsed">
+            <summary>
+Returns how much of the supply is actually being used by units. If a race is provided, the used supply for the given race will be returned,
+otherwise the player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game.
+This is because zerglings take up 0.5 in-game supply
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.GetSupplyTotal(BroodWar.Api.Race)">
+            <summary>
+Returns the total amount of supply the player has. If a race is provided, the total supply for the given race will be returned, otherwise the
+player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game. This is because
+zerglings take up 0.5 in-game supply
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.SupplyTotal">
+            <summary>
+Returns the total amount of supply the player has. If a race is provided, the total supply for the given race will be returned, otherwise the
+player's initial race will be used. Supply counts returned by BWAPI are double what you would expect to see from playing the game. This is because
+zerglings take up 0.5 in-game supply
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.SpentGas">
+            <summary>
+Returns the cumulative amount of gas the player has spent up to this point (not including repairs)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.SpentMinerals">
+            <summary>
+Returns the cumulative amount of minerals the player has spent up to this point (not including repairs)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.RefundedGas">
+            <summary>
+Returns the cumulative amount of gas the player has gained from refunded units up to this point
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.RefundedMinerals">
+            <summary>
+Returns the cumulative amount of minerals the player has gained from refunded units up to this point
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.RepairedGas">
+            <summary>
+Returns the cumulative amount of gas the player has spent on repairs up to this point
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.RepairedMinerals">
+            <summary>
+Returns the cumulative amount of minerals the player has spent on repairs up to this point
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.GatheredGas">
+            <summary>
+Returns the cumulative amount of gas the player has harvested up to this point
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.GatheredMinerals">
+            <summary>
+Returns the cumulative amount of minerals the player has mined up to this point (including the 50 minerals at the start of the game)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Gas">
+            <summary>
+Returns the amount of vespene gas the player has
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Minerals">
+            <summary>
+Returns the amount of minerals the player has
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.LeftGame">
+            <summary>
+Returns true if the player left the game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.IsDefeated">
+            <summary>
+Returns true if the player has been defeated
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.IsVictorious">
+            <summary>
+Returns true if the player has achieved victory
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.StartLocation">
+            <summary>
+Returns the starting location of the player. If complete map information is disabled, this function will return TilePositions::Unknown
+for enemy players. For the complete set of starting locations for the current map, see Game::getStartLocations
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.IsNeutral">
+            <summary>
+Returns true if the player is the neutral player
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsEnemy(BroodWar.Api.Player)">
+            <summary>
+Returns true if other player is an enemy of this player
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Player.IsAlly(BroodWar.Api.Player)">
+            <summary>
+Returns true if other player is an ally of this player
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Force">
+            <summary>
+Returns the force the player is on
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Race">
+            <summary>
+Returns the race of the player
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Units">
+            <summary>
+Returns the list of units the player own. Note that units loaded into Terran dropships, Terran bunkers, Terran refineries,
+Protoss assimilators, and Zerg extractors are not yet included in the list
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Name">
+            <summary>
+Returns the name of the player
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Player.Id">
+            <summary>
+Returns a unique ID for the player
+</summary>
+        </member>
+        <member name="T:BroodWar.Api.Player">
+            <summary>
+Each player in a match will have his or her own player instance. There is also a neutral player which owns all the neutral units
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.SpecialWeapons">
+            <summary>
+Returns the set of all special weapons
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.NormalWeapons">
+            <summary>
+Returns the set of all normal weapons
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.AllWeapons">
+            <summary>
+Returns the set of all the Weapons
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.Targets">
+            <summary>
+Returns what units can attack this weapon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.OuterSplashRadius">
+            <summary>
+Outer radius used in splash damage calculations
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.MedianSplashRadius">
+            <summary>
+Median radius used in splash damage calculations
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.InnerSplashRadius">
+            <summary>
+Inner radius used in splash damage calculations
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.MaxRange">
+            <summary>
+Returns the maximum attack range of the weapon, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.MinRange">
+            <summary>
+Returns the minimum attack range of the weapon, measured in pixels, 0 for most things except WeaponTypes::Arclite_Shock_Cannon
+(the weapon of the Terran Siege Tank in Siege Mode)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.ExplosionType">
+            <summary>
+Returns the type of explosion that this weapon uses
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.DamageType">
+            <summary>
+Returns the type of damage that this weapon uses (i.e. concussive, normal, explosive, etc)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.Upgrade">
+            <summary>
+Returns the upgrade type that can be upgraded to increase the attack damage
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.DamageFactor">
+            <summary>
+Returns the amount that the damage increases per upgrade. see WeaponType::upgradeType
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.DamageCooldown">
+            <summary>
+Returns the amount of cooldown time between attacks
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.DamageAmount">
+            <summary>
+Returns the amount of damage that this weapon deals per attack
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.WhatUses">
+            <summary>
+Returns the unit that can use this weapon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Weapon.Tech">
+            <summary>
+Returns the tech type that must be researched before this weapon can be used, or TechTypes::None if no tech type is required
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.PlaceCop(BroodWar.Api.TilePosition)">
+            <summary>
+Moves a Flag Beacon to the target location
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UseTech(BroodWar.Api.Tech,BroodWar.Api.Unit)">
+            <summary>
+Orders the unit to use a tech requiring a unit target (ie Irradiate). Returns true if it is a valid tech
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UseTech(BroodWar.Api.Tech,BroodWar.Api.Position)">
+            <summary>
+Orders the unit to use a tech requiring a position target (ie Dark Swarm). Returns true if it is a valid tech
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UseTech(BroodWar.Api.Tech)">
+            <summary>
+Orders the unit to use a tech not requiring a target (ie Stim Pack). Returns true if it is a valid tech
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelUpgrade">
+            <summary>
+Orders the unit to cancel an upgrade in progress.
+\see Unit::upgrade, Unit::isUpgrading, Unit::getUpgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelResearch">
+            <summary>
+Orders the unit to cancel a research in progress.
+\see Unit::research, Unit::isResearching, Unit::getTech
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelMorph">
+            <summary>
+Orders the unit to stop morphing.
+\see Unit::morph, Unit::isMorphing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelTrain(System.Int32)">
+            <summary>
+Orders the unit to remove the specified unit from its training queue.
+\see Unit::train, Unit::cancelTrain, Unit::isTraining, Unit::getTrainingQueue
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelAddon">
+            <summary>
+Orders the unit to stop making the addon
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CancelConstruction">
+            <summary>
+Orders the building to stop being constructed.
+\see Unit::beingConstructed
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.HaltConstruction">
+            <summary>
+Orders the SCV to stop constructing the building, and the building is left in a partially complete state until it is canceled, destroyed, or completed.
+\see Unit::isConstructing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.RightClick(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Works like the right click in the GUI. Right click on a mineral patch to order a worker to mine, right click on an enemy to attack it
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.RightClick(BroodWar.Api.Position,System.Boolean)">
+            <summary>
+Works like the right click in the GUI
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UnloadAll(BroodWar.Api.Position,System.Boolean)">
+            <summary>
+Orders the unit to unload all loaded units at the specified location. Unit should be a Terran Dropship, Protoss Shuttle, or Zerg Overlord. If the
+unit is a Terran Bunker, the units will be unloaded right outside the bunker, like in the first version of unloadAll.
+\see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UnloadAll(System.Boolean)">
+            <summary>
+Orders the unit to unload all loaded units at the unit's current position.
+\see Unit::load, Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Unload(BroodWar.Api.Unit)">
+            <summary>
+Orders the unit to unload the target unit.
+\see Unit::load, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Load(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Orders the unit to load the target unit.
+\see Unit::unload, Unit::unloadAll, Unit::getLoadedUnits, Unit:isLoaded
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Land(BroodWar.Api.TilePosition)">
+            <summary>
+Orders the unit to land. Note: unit must be a Terran building that is currently lifted.
+\see Unit::lift, Unit::isLifted
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Lift">
+            <summary>
+Orders the unit to lift. Note: unit must be a Terran building that can be lifted.
+\see Unit::land, Unit::isLifted. 
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Unsiege">
+            <summary>
+Orders the unit to unsiege. Note: unit must be a Terran siege tank.
+\see: Unit::unsiege, Unit::isSieged
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Siege">
+            <summary>
+Orders the unit to siege. Note: unit must be a Terran siege tank.
+\see Unit::unsiege, Unit::isSieged
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Decloak">
+            <summary>
+Orders the unit to decloak.
+\see: Unit::cloak, Unit::isCloaked
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Cloak">
+            <summary>
+Orders the unit to cloak.
+\see: Unit::decloak, Unit::isCloaked
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Unburrow">
+            <summary>
+Orders the burrowed unit to unburrow.
+\see: Unit::burrow, Unit::isBurrowed.
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Burrow">
+            <summary>
+Orders the unit to burrow. Either the unit must be a Zerg Lurker, or the unit must be a Zerg ground unit and burrow tech must be researched.
+\see: Unit::unburrow, Unit::isBurrowed
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Repair(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Orders the unit to repair the specified unit. Only Terran SCVs can be ordered to repair, and the target must be a mechanical Terran unit or building.
+\see Unit::isRepairing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.ReturnCargo(System.Boolean)">
+            <summary>
+Orders the unit to return its cargo to a nearby resource depot such as a Command Center. Only workers that are carrying minerals or gas
+can be ordered to return cargo.
+\see Unit::isCarryingGas, Unit::isCarryingMinerals
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Gather(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Orders the unit to gather the specified unit (must be mineral or refinery type).
+\see Unit::isGatheringGas, Unit::isGatheringMinerals
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Follow(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Orders the unit to follow the specified unit.
+\see Unit::isFollowing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Stop(System.Boolean)">
+            <summary>
+Orders the unit to stop
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.HoldPosition(System.Boolean)">
+            <summary>
+Orders the unit to hold its position
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Patrol(BroodWar.Api.Position,System.Boolean)">
+            <summary>
+Orders the unit to patrol between its current position and the specified position.
+\see Unit::isPatrolling. 
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Move(BroodWar.Api.Position,System.Boolean)">
+            <summary>
+Orders the unit to move from its current position to the specified position.
+\see Unit::isMoving. 
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.SetRallyPoint(BroodWar.Api.Unit)">
+            <summary>
+Orders the unit to set its rally unit to the specified unit.
+\see Unit::setRallyPosition, Unit::getRallyPosition, Unit::getRallyUnit
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.SetRallyPoint(BroodWar.Api.Position)">
+            <summary>
+Orders the unit to set its rally position to the specified position.
+\see Unit::getRallyPosition, Unit::getRallyUnit
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.PerformUpgrade(BroodWar.Api.Upgrade)">
+            <summary>
+Orders the unit to upgrade the given upgrade type.
+\see Unit::cancelUpgrade, Unit::Unit#isUpgrading, Unit::getRemainingUpgradeTime, Unit::getUpgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Research(BroodWar.Api.Tech)">
+            <summary>
+Orders the unit to research the given tech type.
+\see Unit::cancelResearch, Unit::Unit#isResearching, Unit::getRemainingResearchTime, Unit::getTech
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Morph(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Orders the unit to morph into the specified unit type. Returns false if given a wrong type.
+\see Unit::cancelMorph, Unit::isMorphing
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Train(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Orders this unit to add the specified unit type to the training queue. Note that the player must have sufficient resources to train. If you wish to make
+units from a hatchery, use getLarva to get the larva associated with the hatchery and then call morph on the larva you want to morph. This command can also
+be used to make interceptors and scarabs
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.BuildAddon(BroodWar.Api.UnitType)">
+            <summary>
+Orders the unit to build the given addon. The unit must be a Terran building that can have an addon and the specified unit type must be an addon unit type
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Build(BroodWar.Api.Enum.UnitType,BroodWar.Api.TilePosition)">
+            <summary>
+Orders the unit to build the given unit type at the given position. Note that if the player does not have enough resources when the unit attempts
+to place the building down, the order will fail. The tile position specifies where the top left corner of the building will be placed
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Attack(BroodWar.Api.Unit,System.Boolean)">
+            <summary>
+Orders the unit to attack the specified unit
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Attack(BroodWar.Api.Position,System.Boolean)">
+            <summary>
+Orders the unit to attack move to the specified location
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.IssueCommand(BroodWar.Api.UnitCommand)">
+            <summary>
+Issues the give unit command, or returns false if there is an error
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.CanIssueCommand(BroodWar.Api.UnitCommand)">
+            <summary>
+Returns true if the unit is able to execute the given command, or false if there is an error
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.IsVisible(BroodWar.Api.Player)">
+            <summary>
+Returns true if the unit is visible. If the CompleteMapInformation?  cheat flag is enabled, existing units hidden by the fog of war will be
+accessible, but isVisible will still return false.
+\see Unit::exists
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.IsVisible">
+            <summary>
+Returns true if the unit is visible. If the CompleteMapInformation?  cheat flag is enabled, existing units hidden by the fog of war will be
+accessible, but isVisible will still return false.
+\see Unit::exists
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsUpgrading">
+            <summary>
+Returns true if the unit is a building that is upgrading. See UpgradeTypes for the complete list of available upgrades in Broodwar.
+\see Unit::upgrade, Unit::cancelUpgrade, Unit::getUpgrade, Unit::getRemainingUpgradeTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsPowered">
+            <summary>
+Returns true if the unit is a Protoss building that is unpowered because no pylons are in range
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsUnderStorm">
+            <summary>
+Returns true if the unit is under a Protoss Psionic Storm
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsUnderDisruptionWeb">
+            <summary>
+Returns true if the unit is under a Disruption Web
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsUnderDarkSwarm">
+            <summary>
+Returns true if the unit is under a Dark Swarm
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsUnderAttack">
+            <summary>
+Returns true if the unit was recently attacked
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsTraining">
+            <summary>
+Returns true if the unit is training units (i.e. a Barracks training Marines).
+\see Unit::train, Unit::getTrainingQueue, Unit::cancelTrain, Unit::getRemainingTrainTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsStuck">
+            <summary>
+Returns true if the unit is being pushed off of another unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsStimmed">
+            <summary>
+Returns true if the unit is currently stimmed.
+\see Unit::getStimTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsStasised">
+            <summary>
+Returns true if the unit has been stasised by a Protoss Arbiter.
+\see Unit::getStasisTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsStartingAttack">
+            <summary>
+Returns true if the unit is starting to attack.
+\see Unit::attackUnit, Unit::getGroundWeaponCooldown, Unit::getAirWeaponCooldown
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsSieged">
+            <summary>
+Returns true if the unit is a Terran Siege Tank that is currently in Siege mode.
+\see Unit::siege, Unit::unsiege
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsSelected">
+            <summary>
+Returns true if the unit has been selected by the user via the starcraft GUI. Only available if you enable Flag::UserInput during AIModule::onStart.
+\see Game::getSelectedUnits
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsResearching">
+            <summary>
+Returns true if the unit is a building that is researching tech. See TechTypes for the complete list of available techs in Broodwar.
+\see Unit::research, Unit::cancelResearch, Unit::getTech, Unit::getRemainingResearchTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsRepairing">
+            <summary>
+Returns true if the unit is a Terran SCV that is repairing or moving to repair another unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsPlagued">
+            <summary>
+Returns true if the unit has been plagued by a Zerg Defiler.
+\see Unit::getPlagueTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsPatrolling">
+            <summary>
+Returns true if the unit is patrolling between two positions.
+\see Unit::patrol
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsParasited">
+            <summary>
+Returns true if the unit has been parasited by some other player
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsMoving">
+            <summary>
+Returns true if the unit is moving.
+\see Unit::attack, Unit::stop
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsMorphing">
+            <summary>
+Returns true if the unit is a zerg unit that is morphing.
+\see Unit::morph, Unit::cancelMorph, Unit::getBuildType, Unit::getRemainingBuildTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsMaelstrommed">
+            <summary>
+Returns true if the unit is being maelstrommed.
+\see Unit::getMaelstromTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsLockedDown">
+            <summary>
+Returns true if the unit is locked down by a Terran Ghost.
+\see Unit::getLockdownTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsLoaded">
+            <summary>
+Return true if the unit is loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord.
+\see Unit::load, Unit::unload, Unit::unloadAll
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsLifted">
+            <summary>
+Returns true if the unit is a Terran building that is currently lifted off the ground.
+\see Unit::lift,Unit::land
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsIrradiated">
+            <summary>
+Returns true if the unit is being irradiated by a Terran Science Vessel.
+\see Unit::getIrradiateTimer
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.IsInWeaponRange(BroodWar.Api.Unit)">
+            <summary>
+Returns true if the unit can attack a specified target from its current position
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsInvincible">
+            <summary>
+Returns true if the unit is invincible
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsInterruptible">
+            <summary>
+Returns true if the unit can be interrupted
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsIdle">
+            <summary>
+Returns true if the unit is not doing anything.
+\see Unit::stop
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsHoldingPosition">
+            <summary>
+Returns true if the unit is holding position
+\see Unit::holdPosition
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsHallucination">
+            <summary>
+Returns true for hallucinated units, false for normal units. Returns true for hallucinated enemy units only if Complete Map Information is enabled.
+\see Unit::getRemoveTimer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsGatheringMinerals">
+            <summary>
+Returns true if the unit is in one of the four states for gathering minerals (MoveToMinerals, WaitForMinerals, MiningMinerals, ReturnMinerals).
+\see Unit::isCarryingMinerals
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsGatheringGas">
+            <summary>
+Returns true if the unit is in one of the four states for gathering gas (MoveToGas, WaitForGas, HarvestGas, ReturnGas).
+\see Unit::isCarryingGas
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsFollowing">
+            <summary>
+Returns true if the unit is following another unit.
+\see Unit::follow, Unit::getTarget
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsEnsnared">
+            <summary>
+Returns true if the unit has been ensnared by a Zerg Queen
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsDetected">
+            <summary>
+Returns true if the unit is detected
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsDefenseMatrixed">
+            <summary>
+Returns true if the unit has a defense matrix from a Terran Science Vessel
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsConstructing">
+            <summary>
+Returns true when a unit has been issued an order to build a structure and is moving to the build location. Also returns true for Terran
+SCVs while they construct a building.
+\see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isBeingConstructed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsCompleted">
+            <summary>
+Returns true if the unit has been completed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsCloaked">
+            <summary>
+Returns true if the unit is cloaked.
+\see Unit::cloak, Unit::decloak
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsCarryingMinerals">
+            <summary>
+Returns true if the unit is a worker that is carrying minerals.
+\see Unit::returnCargo, Unit::isGatheringMinerals
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsCarryingGas">
+            <summary>
+Returns true if the unit is a worker that is carrying gas.
+\see Unit::returnCargo, Unit::isGatheringGas
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBurrowed">
+            <summary>
+Returns true if the unit is a Zerg unit that is current burrowed.
+\see Unit::burrow, Unit::unburrow
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBraking">
+            <summary>
+Returns true if the unit is currently braking/slowing down
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBlind">
+            <summary>
+Returns true if the unit is currently blind from a Medic's Optical Flare
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBeingHealed">
+            <summary>
+Returns true if the unit is currently being healed by a Terran Medic, or repaired by a Terran SCV
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBeingGathered">
+            <summary>
+Returns true if the unit is a mineral patch or refinery that is being gathered
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsBeingConstructed">
+            <summary>
+Returns true if the unit is being constructed. Always true for incomplete Protoss and Zerg buildings, and true for incomplete Terran
+buildings that have an SCV constructing them. If the SCV halts construction, isBeingConstructed will return false.
+\see Unit::build, Unit::cancelConstruction, Unit::haltConstruction, Unit::isConstructing
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IsAccelerating">
+            <summary>
+Returns true if the unit is currently accelerating
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.HasNuke">
+            <summary>
+Returns true if the Nuclear Missile Silo has a nuke
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Exists">
+            <summary>
+3 cases to consider:
+- If exists() returns true, the unit exists.
+- If exists() returns false and the unit is owned by self(), then the unit does not exist.
+- If exists() returns false and the unit is not owned by self(), then the unit may or may not exist.
+
+\see Unit::isVisible.
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.ClientInfo">
+            <summary>
+Returns the unit's custom client info. The client is responsible for deallocation.
+Sets the unit's custom client info. The client is responsible for deallocation.
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UnitsInWeaponRange(BroodWar.Api.Weapon)">
+            <summary>
+Returns the set of units within weapon range of this unit
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.UnitsInRadius(System.Int32)">
+            <summary>
+Returns the set of units within the given radius of this unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Larva">
+            <summary>
+Returns the set of larva spawned by this unit. If the unit has no larva, or is not a Hatchery, Lair, or Hive, this function returns an empty set.
+Equivalent to clicking "Select Larva" from the Starcraft GUI
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Hatchery">
+            <summary>
+For Zerg Larva, this returns the Hatchery, Lair, or Hive unit this Larva was spawned from. For all other unit types this function returns NULL
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Interceptors">
+            <summary>
+Returns the set of interceptors controlled by this unit. If the unit has no interceptors, or is not a Carrier, this function returns an empty set
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Carrier">
+            <summary>
+For Protoss Interceptors, this returns the Carrier unit this Interceptor is controlled by. For all other unit types this function returns NULL
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.LoadedUnits">
+            <summary>
+Returns a list of the units loaded into a Terran Bunker, Terran Dropship, Protoss Shuttle, or Zerg Overlord
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Transport">
+            <summary>
+Returns the dropship, shuttle, overlord, or bunker that is this unit is loaded in to
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.PowerUp">
+            <summary>
+Returns the power up the unit is holding, or NULL if the unit is not holding a power up
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.NydusExit">
+            <summary>
+Returns the corresponding connected nydus canal of this unit, or NULL if the unit does not have a connected nydus canal
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Addon">
+            <summary>
+Returns the add-on of this unit, or NULL if the unit doesn't have an add-on
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RallyUnit">
+            <summary>
+Returns the unit the building is rallied to. If the building is not rallied to any unit, NULL is returned.
+\see Unit::setRallyPoint, Unit::getRallyPosition
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RallyPosition">
+            <summary>
+Returns the position the building is rallied to. If the building does not produce units, Positions::None is returned.
+\see Unit::setRallyPoint, Unit::getRallyUnit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.OrderTargetPosition">
+            <summary>
+Returns the target position for the units order. For example for the move order getTargetPosition returns the end of the units path but this returns
+the location the unit is trying to move to. 
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.OrderTarget">
+            <summary>
+This is usually set when the low level unit AI acquires a new target automatically. For example if an enemy probe comes in range of your marine,
+the marine will start attacking it, and getOrderTarget will be set in this case, but not getTarget
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.TargetPosition">
+            <summary>
+Returns the target position the unit is moving to (provided a valid path to the target position exists)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Target">
+            <summary>
+Generally returns the appropriate target unit after issuing an order that accepts a target unit (i.e. attack, repair, gather, follow, etc.).
+To check for a target that has been acquired automatically (without issuing an order) see getOrderTarget
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.BuildUnit">
+            <summary>
+If the unit is an SCV that is constructing a building, this will return the building it is constructing. If the unit is a Terran
+building that is being constructed, this will return the SCV that is constructing it
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RemainingUpgradeTime">
+            <summary>
+Returns the amount of time until the unit is done upgrading its current upgrade. If the unit is not upgrading anything, 0 is returned.
+\see Unit::upgrade, Unit::cancelUpgrade, Unit::isUpgrading, Unit::getUpgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RemainingResearchTime">
+            <summary>
+Returns the amount of time until the unit is done researching its current tech. If the unit is not researching anything, 0 is returned.
+\see Unit::research, Unit::cancelResearch, Unit::isResearching, Unit::getTech
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RemainingTrainTime">
+            <summary>
+Returns the remaining time of the unit that is currently being trained. If the unit is a Hatchery, Lair, or Hive, this returns the amount
+of time until the next larva spawns, or 0 if the unit already has 3 larva
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RemainingBuildTime">
+            <summary>
+Returns the remaining build time of a unit/building that is being constructed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Upgrade">
+            <summary>
+Returns the upgrade that the unit is currently upgrading. If the unit is not upgrading anything, UpgradeTypes::None is returned.
+\see Unit::upgrade, Unit::cancelUpgrade, Unit::isUpgrading, Unit::getRemainingUpgradeTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Tech">
+            <summary>
+Returns the tech that the unit is currently researching. If the unit is not researching anything, TechTypes::None is returned.
+\see Unit::research, Unit::cancelResearch, Unit::isResearching, Unit::getRemainingResearchTime
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.TrainingQueue">
+            <summary>
+Returns the list of units queued up to be trained. \see Unit::train, Unit::cancelTrain, Unit::isTraining
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.BuildType">
+            <summary>
+Returns the building type a worker is about to construct. If the unit is a morphing Zerg unit or an incomplete building,
+this returns the UnitType the unit is about to become upon completion
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.StimTimer">
+            <summary>
+Returns the time until the stimpack wears off. 0 -&gt; No stimpack boost present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.StasisTimer">
+            <summary>
+Returns the time until the stasis field wears off. 0 -&gt; No stasis field present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.RemoveTimer">
+            <summary>
+Returns the amount of time until the unit is removed, or 0 if the unit does not have a remove timer. Used to determine how much
+time remains before hallucinated units, dark swarm, etc have until they are removed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.PlagueTimer">
+            <summary>
+Returns the time until the plague wears off. 0 -&gt; No plague present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.MaelstromTimer">
+            <summary>
+Returns the time until the maelstrom wears off. 0 -&gt; No maelstrom present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.LockdownTimer">
+            <summary>
+Returns the time until the lockdown wears off. 0 -&gt; No lockdown present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.IrradiateTimer">
+            <summary>
+Returns the time until the radiation wears off. 0 -&gt; No radiation present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.EnsnareTimer">
+            <summary>
+Returns the time until the ensnare effect wears off. 0 -&gt; No ensnare effect present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.DefenseMatrixTimer">
+            <summary>
+Returns the time until the defense matrix wears off. 0 -&gt; No defense Matrix present
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.DefenseMatrixPoints">
+            <summary>
+Returns the remaining hit points of the defense matrix. Initially a defense Matrix has 250 points see Unit::getDefenseMatrixTimer, Unit::isDefenseMatrixed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.SpellCooldown">
+            <summary>
+Returns unit's ground weapon cooldown. It is 0 if the unit is ready cast a spell
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.AirWeaponCooldown">
+            <summary>
+Returns unit's air weapon cooldown. It is 0 if the unit is ready to attack
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.GroundWeaponCooldown">
+            <summary>
+Returns unit's ground weapon cooldown. It is 0 if the unit is ready to attack
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.SpiderMineCount">
+            <summary>
+Returns the number of spider mines in the Terran Vulture
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.ScarabCount">
+            <summary>
+Returns the number of scarabs in the Protoss Reaver
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InterceptorCount">
+            <summary>
+Returns the number of interceptors the Protoss Carrier has
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.AcidSporeCount">
+            <summary>
+Returns the unit's acid spore count
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.KillCount">
+            <summary>
+Returns the unit's current kill count
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InitialResources">
+            <summary>
+Returns the unit's initial amount of containing resources, or 0 if the unit wasn't a neutral unit at the beginning of the game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InitialHitPoints">
+            <summary>
+Returns the unit's initial amount of hit points, or 0 if it wasn't a neutral unit at the beginning of the game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InitialTilePosition">
+            <summary>
+Returns the initial build tile position of the unit on the map, or TilePositions::Unknown if the unit wasn't a neutral unit at the
+beginning of the game. The tile position is of the top left corner of the building
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InitialPosition">
+            <summary>
+Returns the initial position of the unit on the map, or Positions::Unknown if the unit wasn't a neutral unit at the beginning of the game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.InitialType">
+            <summary>
+Returns the initial type of the unit or Unknown if it wasn't a neutral unit at the beginning of the game
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.LastAttackingPlayer">
+            <summary>
+Returns the player that last attacked this unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.LastCommand">
+            <summary>
+Returns the last successful command
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.LastCommandFrame">
+            <summary>
+Returns the frame of the last successful command. Frame is comparable to Game::getFrameCount()
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.HasPath(BroodWar.Api.Position)">
+            <summary>
+Returns true if the unit is able to move to the target position
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.HasPath(BroodWar.Api.Unit)">
+            <summary>
+Returns true if the unit is able to move to the target unit
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Distance(BroodWar.Api.Position)">
+            <summary>
+Returns the distance from the edge of the current unit to the target position
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Unit.Distance(BroodWar.Api.Unit)">
+            <summary>
+Returns the edge-to-edge distance between the current unit and the target unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.ResourceGroup">
+            <summary>
+Retrieves the group ID of a resource. Can be used to identify which resources belong to an expansion
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Resources">
+            <summary>
+Returns the unit's current amount of containing resources. Useful for determining how much minerals are left in a mineral patch,
+or how much gas is left in a geyser (can also be called on a refinery/assimilator/extractor)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Energy">
+            <summary>
+Returns the unit's current amount of energy
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Shields">
+            <summary>
+Returns the unit's current amount of shields
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.HitPoints">
+            <summary>
+Returns the unit's current amount of hit points
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Bottom">
+            <summary>
+Returns the Y coordinate of the bottom side of the unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Right">
+            <summary>
+Returns the X coordinate of the right side of the unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Top">
+            <summary>
+Returns the Y coordinate of the top side of the unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Left">
+            <summary>
+Returns the X coordinate of the left side of the unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Region">
+            <summary>
+Returns the region that this unit is currently in
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.VelocityY">
+            <summary>
+Returns the y component of the unit's velocity, measured in pixels per frame
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.VelocityX">
+            <summary>
+Returns the x component of the unit's velocity, measured in pixels per frame
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Angle">
+            <summary>
+Returns the direction the unit is facing, measured in radians. An angle of 0 means the unit is facing east
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.TilePosition">
+            <summary>
+Returns the build tile position of the unit on the map. Useful if the unit is a building. The tile position is of the top left corner of the building
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Position">
+            <summary>
+Returns the position of the unit on the map
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.UnitType">
+            <summary>
+Returns the current type of the unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Player">
+            <summary>
+Returns a pointer to the player that owns this unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.ReplayId">
+            <summary>
+Returns the unit ID that is used in a replay (*.rep) file's action recordings
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Unit.Id">
+            <summary>
+Returns a unique ID for this unit. It simply casts the unit's address as an integer, since each unit has a unique address
+</summary>
+        </member>
+        <member name="T:BroodWar.Api.Unit">
+            <summary>
+The Unit class is used to get information about individual units as well as issue orders to units. Each unit in the game has a unique Unit object,
+and Unit objects are not deleted until the end of the match (so you don't need to worry about unit pointers becoming invalid).
+
+Every Unit in the game is either accessible or inaccessible. To determine if an AI can access a particular unit, BWAPI checks to see if
+Flag::CompleteMapInformation? is enabled. So there are two cases to consider - either the flag is enabled, or it is disabled:
+
+If Flag::CompleteMapInformation? is disabled, then a unit is accessible if and only if it is visible. Note also that some properties of visible enemy
+units will not be made available to the AI (such as the contents of visible enemy dropships). If a unit is not visible, Unit::exists will return false,
+regardless of whether or not the unit exists. This is because absolutely no state information on invisible enemy units is made available to the AI.
+To determine if an enemy unit has been destroyed, the AI must watch for AIModule::onUnitDestroy messages from BWAPI, which is only called for visible
+units which get destroyed.
+
+If Flag::CompleteMapInformation? is enabled, then all units that exist in the game are accessible, and Unit::exists is accurate for all units. Similarly
+AIModule::onUnitDestroy messages are generated for all units that get destroyed, not just visible ones.
+
+If a Unit is not accessible, in general the only the getInitial__ functions will be available to the AI. However for units that were owned by the player,
+getPlayer and getType will continue to work for units that have been destroyed.
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.UnitType.Get(BroodWar.Api.Enum.UnitType)">
+            <summary>
+Gets the matching unit type object that already exists
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.UpgradesWhat">
+            <summary>
+Returns the set of upgrades that this unit type is capable of upgrading
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ResearchesWhat">
+            <summary>
+Returns the set of technologies that this unit is capable of researching
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.BuildsWhat">
+            <summary>
+Returns the set of unit types this unit is capable of creating
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.CanBuildAddon">
+            <summary>
+Returns true if the unit is capable of constructing an addon. This consists of Command Center, Factory, Starport, and Science Facility
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsMineralField">
+            <summary>
+Returns true if the unit is one of the three mineral field types
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ProducesLarva">
+            <summary>
+Returns true if the unit produces larva
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ProducesCreep">
+            <summary>
+Returns true if this unit type spreads creep
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsSpell">
+            <summary>
+Returns true if the unit is a spell unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsSpecialBuilding">
+            <summary>
+Returns true if the unit is a special building
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsFlagBeacon">
+            <summary>
+Returns true if the unit is a flag Beacon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsBeacon">
+            <summary>
+Returns true if the unit is a regular Beacon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsPowerup">
+            <summary>
+Returns true if the unit is a Powerup unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsHero">
+            <summary>
+Returns true if the unit is a Hero unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsNeutral">
+            <summary>
+Returns true if the unit is neutral, such as a critter or mineral field
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsFlyingBuilding">
+            <summary>
+Returns true for Terran buildings that can lift off (i.e. Barracks)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsAddon">
+            <summary>
+Returns true if the unit is an add-on, such as a Terran Comsat Station
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsBuilding">
+            <summary>
+Returns true if the unit is a building (also true for mineral field and vespene geyser)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsCloakable">
+            <summary>
+Returns true for units that can be cloaked - Terran Ghost and Terran Wraith. Does not include units which have permanent
+cloak (Protoss Observer and Protoss Dark Templar)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsBurrowable">
+            <summary>
+Returns true for Zerg Lurker and units that can burrow when burrow tech is researched
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsTwoUnitsInOneEgg">
+            <summary>
+Returns true for Zergling and Scourge
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RequiresCreep">
+            <summary>
+Returns true for buildings that can only be built on zerg creep
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RequiresPsi">
+            <summary>
+Returns true for buildings that must be near a pylon to be constructed
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsWorker">
+            <summary>
+Returns true for Protoss Probe, Terran SCV, and Zerg Drone
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsRefinery">
+            <summary>
+Returns true for Terran Refinery, Zerg Extractor, and Protoss Assimilator
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsResourceDepot">
+            <summary>
+Returns true for the five units that can accept resources - Terran Command Center, Protoss Nexus, Zerg Hatchery, Zerg Lair, and Zerg Hive
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsResourceContainer">
+            <summary>
+Returns true for the five units that hold resources - Mineral Field, Vespene Geyser, Terran Refinery, Zerg Extractor, and Protoss Assimilator
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsDetector">
+            <summary>
+Returns true for the seven units that can detect cloaked units - Terran Science Vessel, Spell Scanner Sweep, Zerg Overlord,
+Protoss Observer, Terran Missile Turret, Zerg Spore Colony, and Protoss Photon Cannon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsRobotic">
+            <summary>
+Returns true for the four robotic Protoss units - Probe, Shuttle, Reaver, and Observer
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsMechanical">
+            <summary>
+Returns true if the unit is mechanical such as a Terran Vulture
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsOrganic">
+            <summary>
+Returns true if the unit is organic, such as a Terran Marine
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsInvincible">
+            <summary>
+Returns true for units that cannot be destroyed (i.e. Terran Nuclear Missile, Mineral Field, Vespene Geyser, etc)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.HasPermanentCloak">
+            <summary>
+Returns true for the two units that are permanently cloaked - Protoss Observer and Protoss Dark Templar
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsSpellcaster">
+            <summary>
+Returns true if the unit type is capable of casting spells / using technology
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RegeneratesHp">
+            <summary>
+Returns true for units that regenerate health (i.e. zerg units)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.IsFlyer">
+            <summary>
+Returns true for flying/air units
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.CanMove">
+            <summary>
+Returns true if the unit can move. Note that buildings will return false, even Terran buildings which can move once lifted
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.CanAttack">
+            <summary>
+Returns true if the unit can attack (either ground or air). Returns false for units that can only inflict damage via special abilities (such as Protoss High Templar)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.CanProduce">
+            <summary>
+Returns true if the unit can train other units. For example, UnitTypes::Terran_Barracks.canProduce() will return true,
+while UnitTypes::Terran_Marine?.canProduce() will return false. This is also true for two non-building units: Protoss Carrier
+(can produce interceptors) and Protoss Reaver (can produce scarabs)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.TurnRadius">
+            <summary>
+Related to how fast the unit can turn. What units this quantity is measured in is currently unknown
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.HaltDistance">
+            <summary>
+Related to how fast the unit can halt. What units this quantity is measured in is currently unknown
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Acceleration">
+            <summary>
+Returns how fast the unit can accelerate to its top speed. What units this quantity is measured in is currently unknown
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.TopSpeed">
+            <summary>
+Returns the unit's non-upgraded top speed in pixels per frame. For Terran buildings that can lift off and the Zerg Infested
+Command Center, this returns how fast the building moves when it is lifted
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.AirWeapon">
+            <summary>
+Returns the unit's air weapon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.GroundWeapon">
+            <summary>
+Returns the unit's ground weapon
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.SightRange">
+            <summary>
+Returns how far the un-upgraded unit type can see into the fog of war, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.SeekRange">
+            <summary>
+Returns the range at which the unit will start targeting enemy units, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.DimensionDown">
+            <summary>
+Distance from the center of the unit to the bottom edge of the unit, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.DimensionRight">
+            <summary>
+Distance from the center of the unit to the right edge of the unit, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.DimensionUp">
+            <summary>
+Distance from the center of the unit to the top edge of the unit, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.DimensionLeft">
+            <summary>
+Distance from the center of the unit to the left edge of the unit, measured in pixels
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.TileSize">
+            <summary>
+Returns the tile size of the unit as a TilePosition. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.TileSize will return X=3,Y=2
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.TileHeight">
+            <summary>
+Returns the tile height of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.TileHeight will return 2
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.TileWidth">
+            <summary>
+Returns the tile width of the unit. Useful for determining the size of buildings. For example UnitTypes::Terran_Supply_Depot.TileWidth will return 3
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Size">
+            <summary>
+Returns the size of the unit - either Small, Medium, Large, or Independent
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.DestroyScore">
+            <summary>
+Returns the score which is used to determine the total scores in the after-game stats screen
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.BuildScore">
+            <summary>
+Returns the score which is used to determine the total scores in the after-game stats screen
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ProvidedSpace">
+            <summary>
+Returns the amount of space this unit type provides
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RequiredSpace">
+            <summary>
+Returns the amount of space this unit type takes up inside a bunker or transport unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ProvidedSupply">
+            <summary>
+Returns the amount of supply produced by this unit (i.e. for a Protoss_Pylon). Supply counts returned by BWAPI are double what
+you would expect to see from playing the game. This is because zerglings take up 0.5 in-game supply
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Price">
+            <summary>
+Unit price
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Armor">
+            <summary>
+Returns the amount of armor the non-upgraded unit type has
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.MaxEnergy">
+            <summary>
+Returns the maximum amount of energy the unit type can have
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.MaxShields">
+            <summary>
+Returns the maximum amount of shields the unit type can have
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.MaxHitPoints">
+            <summary>
+Returns the maximum amount of hit points the unit type can have
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.ArmorUpgrade">
+            <summary>
+Returns the upgrade that increase's the unit's armor, or UpgradeTypes::None if no upgrade increase's this unit's armor.
+For example UnitTypes::Terran_Marine.armorUpgrade() will return a pointer to UpgradeTypes::Terran_Infantry_Armor
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Upgrades">
+            <summary>
+Returns the set of upgrade types that can affect this unit
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Abilities">
+            <summary>
+Returns the set of tech types this unit can use, provided the tech types have been researched and the unit has enough energy
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.CloakingTech">
+            <summary>
+Returns the tech used to cloak the unit, or TechTypes::None if the unit cannot cloak or is permanently cloaked
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RequiredTech">
+            <summary>
+Included in the API for completeness, since the only units that actually needs tech to be trained are the Zerg_Lurker and Zerg_Lurker_Egg.
+The tech type needed is TechTypes::Lurker_Aspect
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.RequiredUnits">
+            <summary>
+Returns the units the player is required to have before it can train or build the given unit type.
+
+Example: UnitTypes::Terran_Battlecruiser.requiredUnits() will return a dictionary of three keys:
+UnitTypes::Terran_Starport, UnitTypes::Terran_Control_Tower, and UnitTypes::Terran_Physics_Lab
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.WhatBuilds">
+            <summary>
+Returns what builds this unit type. The second number will usually be 1 unless the unit type is Protoss_Archon or Protoss_Dark_Archon.
+Units that cannot be created, such as critters and mineral fields, will return a pair where the unit type is UnitTypes::None, and the
+second component is 0.
+
+Example: UnitTypes::Terran_Marine.whatBuilds() will return an std::pair, where the first component is UnitTypes::Terran_Barracks
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.UnitType.Race">
+            <summary>
+Returns the race that the unit belongs to. For example UnitTypes::Terran_SCV.getRace() will return Races::Terran
+</summary>
+        </member>
+        <member name="T:BroodWar.Api.UnitType">
+            <summary>
+The UnitType class is used to get information about a particular type of unit, such as the build time of a Lurker,
+or the mineral price of an Ultralisk. TODO Add the unittype table from the wiki
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.WhatUses">
+            <summary>
+Returns the set of units that are affected by this upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Upgrade.WhatsRequired(System.Int32)">
+            <summary>
+Returns the type of unit that is additionally required for the upgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.WhatUpgrades">
+            <summary>
+Returns the type of unit that researches the upgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.MaxRepeats">
+            <summary>
+Returns the maximum number of times the upgrade can be researched
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.UpgradeTimeFactor">
+            <summary>
+Returns the number of frames that the upgrade time increases for each additional upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Upgrade.UpgradeTime(System.Int32)">
+            <summary>
+Returns the number of frames needed to research the first upgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.GasPriceFactor">
+            <summary>
+Returns the amount that the vespene gas price increases for each additional upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Upgrade.GasPrice(System.Int32)">
+            <summary>
+Returns the vespene gas price for the first upgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.MineralPriceFactor">
+            <summary>
+Returns the amount that the mineral price increases for each additional upgrade
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Upgrade.MineralPrice(System.Int32)">
+            <summary>
+Returns the mineral price for the first upgrade
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Upgrade.Race">
+            <summary>
+Returns the race the upgrade is for. For example, UpgradeTypes::Terran_Infantry_Armor.getRace() will return Races::Terran
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.Order">
+            <summary>
+Returns the order used to execute this tech type as an action
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.WhatUses">
+            <summary>
+Returns the set of units that can use this tech type. Usually this will just be a set of one unit type, however in some cases, such as
+TechTypes::Burrowing, several unit types will be returned
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.TargetsPosition">
+            <summary>
+Returns true if this tech type must be specified a position (i.e. Dark Swarm)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.TargetsUnit">
+            <summary>
+Returns true if this tech type must be used on another unit (i.e. Irradiate)
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.Weapon">
+            <summary>
+Returns the corresponding weapon for this tech type, or TechTypes::None if no corresponding weapon exists. For example, TechTypes::Dark_Swarm.getWeapon()
+will return a pointer to WeaponTypes::Dark_Swarm
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.WhatResearches">
+            <summary>
+Returns the type of unit that researches this tech type. If this tech type is available for free (does not need to be researched),
+then this method will return UnitTypes::None
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.EnergyCost">
+            <summary>
+Returns the amount of energy used each time this tech type is used
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.Price">
+            <summary>
+Tech price
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Tech.Race">
+            <summary>
+Returns the race that uses the TechType. For example, TechTypes::Scanner_Sweep?.getRace() will return Races::Terran
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Race.SupplyProvider">
+            <summary>
+Returns the main supply provider unit type for the given race. For example: Races::Terran.getSupplyProvider() will return a pointer to
+UnitTypes::Terran_Supply_Depot?
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Race.Transport">
+            <summary>
+Returns the transport unit type for the given race. For example: Races::Protoss.getTransport() will return a pointer to UnitTypes::Protoss_Shuttle
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Race.Refinery">
+            <summary>
+Returns the refinery unit type for the given race. For example: Races::Zerg.getRefinery() will return a pointer to UnitTypes::Zerg_Extractor?
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Race.Center">
+            <summary>
+Returns the center unit type for the given race. For example Races::Terran.getCenter() will return a pointer to UnitTypes::Terran_Command_Center.
+While there are three center types for Zerg (Hatchery, Lair, and Hive), Races::Zerg.getCenter() will only return a pointer to UnitTypes::Zerg_Hatchery,
+since it is the unit type needed to make a new center
+</summary>
+        </member>
+        <member name="P:BroodWar.Api.Race.Worker">
+            <summary>
+Returns the worker unit type for the given race. For example Races::Protoss.getWorker() will return a pointer to UnitTypes::Protoss_Probe
+</summary>
+        </member>
+        <member name="M:BroodWar.Api.Race.ToString">
+            <summary>
+Returns the name of the race. For example Races::Terran.getName() will return a std::string object containing "Terran"
+</summary>
+        </member>
+    </members>
+</doc>

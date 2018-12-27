@@ -1,0 +1,2535 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Broodwar, Version=0.0.9.0, Culture=neutral, PublicKeyToken=faeea42dccb4ab27: 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly Microsoft.VisualC.STLCLR, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Class BroodWar.Api.Position: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BroodWar.Api.Position): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsUnknown 'get ' : 
+    Boolean IsNone 'get ' : 
+    Boolean IsInvalid 'get ' : 
+    Boolean IsValid 'get ' : 
+    Int32 Y    'get ' : 
+    Int32 X    'get ' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsValid(): PrivateScope, Public, HideBySig, SpecialName
+    CalcDistance(Position): PrivateScope, Public, HideBySig
+    CalcApproximateDistance(Position): PrivateScope, Public, HideBySig
+    CalcLength(): PrivateScope, Public, HideBySig
+    MakeValid(): PrivateScope, Public, HideBySig
+    get_IsInvalid(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsNone(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnknown(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(Position): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    op_Equality(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_LessThan(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Addition(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(Position, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(Position, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_AdditionAssignment(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_SubtractionAssignment(Position, Position): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_MultiplicationAssignment(Position, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_DivisionAssignment(Position, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    Rescale(WalkPosition): PrivateScope, Public, Static, HideBySig
+    Rescale(TilePosition): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Interface BroodWar.Api.IIdentifiedObject: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, BeforeFieldInit
+  Properties:
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Class BroodWar.Api.Race: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+    System.IDisposable
+  Properties:
+    System.Collections.Generic.List`1[BroodWar.Api.Race] AllRaces 'get ' : 
+    BroodWar.Api.UnitType SupplyProvider 'get ' : 
+    BroodWar.Api.UnitType Transport 'get ' : 
+    BroodWar.Api.UnitType Refinery 'get ' : 
+    BroodWar.Api.UnitType Center 'get ' : 
+    BroodWar.Api.UnitType Worker 'get ' : 
+    BroodWar.Api.Enum.RaceType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    ToString(): PrivateScope, Public, Virtual, HideBySig
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(RaceType): PrivateScope, Public, HideBySig
+    get_Worker(): PrivateScope, Public, HideBySig, SpecialName
+    get_Center(): PrivateScope, Public, HideBySig, SpecialName
+    get_Refinery(): PrivateScope, Public, HideBySig, SpecialName
+    get_Transport(): PrivateScope, Public, HideBySig, SpecialName
+    get_SupplyProvider(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(Race): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    get_AllRaces(): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Equality(Race, Race): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Race, Race): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Weapon: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+    System.IDisposable
+  Properties:
+    System.Collections.Generic.List`1[BroodWar.Api.Weapon] SpecialWeapons 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.Weapon] NormalWeapons 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.Weapon] AllWeapons 'get ' : 
+    BroodWar.Api.Enum.Targets Targets 'get ' : 
+    Int32 OuterSplashRadius 'get ' : 
+    Int32 MedianSplashRadius 'get ' : 
+    Int32 InnerSplashRadius 'get ' : 
+    Int32 MaxRange 'get ' : 
+    Int32 MinRange 'get ' : 
+    BroodWar.Api.Enum.ExplosionType ExplosionType 'get ' : 
+    BroodWar.Api.Enum.DamageType DamageType 'get ' : 
+    BroodWar.Api.Upgrade Upgrade 'get ' : 
+    Int32 DamageFactor 'get ' : 
+    Int32 DamageCooldown 'get ' : 
+    Int32 DamageBonus 'get ' : 
+    Int32 DamageAmount 'get ' : 
+    BroodWar.Api.UnitType WhatUses 'get ' : 
+    BroodWar.Api.Tech Tech 'get ' : 
+    BroodWar.Api.Enum.WeaponType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(WeaponType): PrivateScope, Public, HideBySig
+    get_Tech(): PrivateScope, Public, HideBySig, SpecialName
+    get_WhatUses(): PrivateScope, Public, HideBySig, SpecialName
+    get_DamageAmount(): PrivateScope, Public, HideBySig, SpecialName
+    get_DamageBonus(): PrivateScope, Public, HideBySig, SpecialName
+    get_DamageCooldown(): PrivateScope, Public, HideBySig, SpecialName
+    get_DamageFactor(): PrivateScope, Public, HideBySig, SpecialName
+    get_Upgrade(): PrivateScope, Public, HideBySig, SpecialName
+    get_DamageType(): PrivateScope, Public, HideBySig, SpecialName
+    get_ExplosionType(): PrivateScope, Public, HideBySig, SpecialName
+    get_MinRange(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxRange(): PrivateScope, Public, HideBySig, SpecialName
+    get_InnerSplashRadius(): PrivateScope, Public, HideBySig, SpecialName
+    get_MedianSplashRadius(): PrivateScope, Public, HideBySig, SpecialName
+    get_OuterSplashRadius(): PrivateScope, Public, HideBySig, SpecialName
+    get_Targets(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(Weapon): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    get_AllWeapons(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_NormalWeapons(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_SpecialWeapons(): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Equality(Weapon, Weapon): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Weapon, Weapon): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Player: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+  Properties:
+    Boolean IsObserver 'get ' : 
+    Int32 CustomScore 'get ' : 
+    Int32 RazingScore 'get ' : 
+    Int32 BuildingScore 'get ' : 
+    Int32 KillScore 'get ' : 
+    Int32 UnitScore 'get ' : 
+    Int32 TextColor 'get ' : 
+    System.Drawing.Color Color 'get ' : 
+    Int32 SupplyUsed 'get ' : 
+    Int32 SupplyTotal 'get ' : 
+    Int32 SpentGas 'get ' : 
+    Int32 SpentMinerals 'get ' : 
+    Int32 RefundedGas 'get ' : 
+    Int32 RefundedMinerals 'get ' : 
+    Int32 RepairedGas 'get ' : 
+    Int32 RepairedMinerals 'get ' : 
+    Int32 GatheredGas 'get ' : 
+    Int32 GatheredMinerals 'get ' : 
+    Int32 Gas  'get ' : 
+    Int32 Minerals 'get ' : 
+    Boolean LeftGame 'get ' : 
+    Boolean IsDefeated 'get ' : 
+    Boolean IsVictorious 'get ' : 
+    BroodWar.Api.TilePosition StartLocation 'get ' : 
+    Boolean IsNeutral 'get ' : 
+    BroodWar.Api.Force Force 'get ' : 
+    BroodWar.Api.Race Race 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] Units 'get ' : 
+    System.String Name 'get ' : 
+    BroodWar.Api.Enum.PlayerType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(PlayerType): PrivateScope, Public, HideBySig
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    get_Units(): PrivateScope, Public, HideBySig, SpecialName
+    get_Race(): PrivateScope, Public, HideBySig, SpecialName
+    get_Force(): PrivateScope, Public, HideBySig, SpecialName
+    IsAlly(Player): PrivateScope, Public, HideBySig
+    IsEnemy(Player): PrivateScope, Public, HideBySig
+    get_IsNeutral(): PrivateScope, Public, HideBySig, SpecialName
+    get_StartLocation(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsVictorious(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDefeated(): PrivateScope, Public, HideBySig, SpecialName
+    get_LeftGame(): PrivateScope, Public, HideBySig, SpecialName
+    get_Minerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_Gas(): PrivateScope, Public, HideBySig, SpecialName
+    get_GatheredMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_GatheredGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_RepairedMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_RepairedGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_RefundedMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_RefundedGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_SpentMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_SpentGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_SupplyTotal(): PrivateScope, Public, HideBySig, SpecialName
+    GetSupplyTotal(Race): PrivateScope, Public, HideBySig
+    get_SupplyUsed(): PrivateScope, Public, HideBySig, SpecialName
+    GetSupplyUsed(Race): PrivateScope, Public, HideBySig
+    AllUnitCount(UnitType): PrivateScope, Public, HideBySig
+    VisibleUnitCount(UnitType): PrivateScope, Public, HideBySig
+    CompletedUnitCount(UnitType): PrivateScope, Public, HideBySig
+    IncompleteUnitCount(UnitType): PrivateScope, Public, HideBySig
+    DeadUnitCount(UnitType): PrivateScope, Public, HideBySig
+    KilledUnitCount(UnitType): PrivateScope, Public, HideBySig
+    GetUpgradeLevel(UpgradeType): PrivateScope, Public, HideBySig
+    HasResearched(TechType): PrivateScope, Public, HideBySig
+    IsResearching(TechType): PrivateScope, Public, HideBySig
+    IsUpgrading(UpgradeType): PrivateScope, Public, HideBySig
+    get_Color(): PrivateScope, Public, HideBySig, SpecialName
+    get_TextColor(): PrivateScope, Public, HideBySig, SpecialName
+    MaxEnergy(UnitType): PrivateScope, Public, HideBySig
+    TopSpeed(UnitType): PrivateScope, Public, HideBySig
+    WeaponMaxRange(Weapon): PrivateScope, Public, HideBySig
+    SightRange(UnitType): PrivateScope, Public, HideBySig
+    WeaponDamageCooldown(UnitType): PrivateScope, Public, HideBySig
+    Armor(UnitType): PrivateScope, Public, HideBySig
+    get_UnitScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_KillScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_BuildingScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_RazingScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_CustomScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsObserver(): PrivateScope, Public, HideBySig, SpecialName
+    GetMaxUpgradeLevel(UpgradeType): PrivateScope, Public, HideBySig
+    IsResearchAvailable(TechType): PrivateScope, Public, HideBySig
+    IsUnitAvailable(UnitType): PrivateScope, Public, HideBySig
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Player): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Player, Player): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Player, Player): PrivateScope, Public, Static, HideBySig, SpecialName
+Class BroodWar.Api.Price: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(Int32, Int32, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    Int32 Supply 'get ' : 
+    Int32 TimeFrames 'get ' : 
+    Int32 Gas  'get ' : 
+    Int32 Minerals 'get ' : 
+  Methods:
+    get_Minerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_Gas(): PrivateScope, Public, HideBySig, SpecialName
+    get_TimeFrames(): PrivateScope, Public, HideBySig, SpecialName
+    get_Supply(): PrivateScope, Public, HideBySig, SpecialName
+Class BroodWar.Api.Tech: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.Collections.Generic.List`1[BroodWar.Api.Tech] AllTechs 'get ' : 
+    BroodWar.Api.Enum.OrderType Order 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.UnitType] WhatUses 'get ' : 
+    Boolean TargetsPosition 'get ' : 
+    Boolean TargetsUnit 'get ' : 
+    BroodWar.Api.Weapon Weapon 'get ' : 
+    BroodWar.Api.UnitType WhatResearches 'get ' : 
+    Int32 EnergyCost 'get ' : 
+    BroodWar.Api.Price Price 'get ' : 
+    BroodWar.Api.Race Race 'get ' : 
+    BroodWar.Api.Enum.TechType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(TechType): PrivateScope, Public, HideBySig
+    get_Race(): PrivateScope, Public, HideBySig, SpecialName
+    get_Price(): PrivateScope, Public, HideBySig, SpecialName
+    get_EnergyCost(): PrivateScope, Public, HideBySig, SpecialName
+    get_WhatResearches(): PrivateScope, Public, HideBySig, SpecialName
+    get_Weapon(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetsUnit(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetsPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_WhatUses(): PrivateScope, Public, HideBySig, SpecialName
+    get_Order(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Tech): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    get_AllTechs(): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Equality(Tech, Tech): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Tech, Tech): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Upgrade: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+    System.IDisposable
+  Properties:
+    System.Collections.Generic.List`1[BroodWar.Api.Upgrade] AllUpgrades 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.UnitType] WhatUses 'get ' : 
+    BroodWar.Api.UnitType WhatUpgrades 'get ' : 
+    Int32 MaxRepeats 'get ' : 
+    Int32 UpgradeTimeFactor 'get ' : 
+    Int32 GasPriceFactor 'get ' : 
+    Int32 MineralPriceFactor 'get ' : 
+    BroodWar.Api.Race Race 'get ' : 
+    BroodWar.Api.Enum.UpgradeType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(UpgradeType): PrivateScope, Public, HideBySig
+    get_Race(): PrivateScope, Public, HideBySig, SpecialName
+    MineralPrice(Int32): PrivateScope, Public, HideBySig
+    get_MineralPriceFactor(): PrivateScope, Public, HideBySig, SpecialName
+    GasPrice(Int32): PrivateScope, Public, HideBySig
+    get_GasPriceFactor(): PrivateScope, Public, HideBySig, SpecialName
+    UpgradeTime(Int32): PrivateScope, Public, HideBySig
+    get_UpgradeTimeFactor(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxRepeats(): PrivateScope, Public, HideBySig, SpecialName
+    get_WhatUpgrades(): PrivateScope, Public, HideBySig, SpecialName
+    WhatsRequired(Int32): PrivateScope, Public, HideBySig
+    get_WhatUses(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(Upgrade): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    get_AllUpgrades(): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Equality(Upgrade, Upgrade): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Upgrade, Upgrade): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.TilePosition: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BroodWar.Api.TilePosition): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsUnknown 'get ' : 
+    Boolean IsNone 'get ' : 
+    Boolean IsInvalid 'get ' : 
+    Boolean IsValid 'get ' : 
+    Int32 Y    'get ' : 
+    Int32 X    'get ' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsValid(): PrivateScope, Public, HideBySig, SpecialName
+    CalcDistance(TilePosition): PrivateScope, Public, HideBySig
+    CalcApproximateDistance(TilePosition): PrivateScope, Public, HideBySig
+    CalcLength(): PrivateScope, Public, HideBySig
+    MakeValid(): PrivateScope, Public, HideBySig
+    get_IsInvalid(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsNone(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnknown(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(TilePosition): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    op_Equality(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_LessThan(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Addition(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(TilePosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(TilePosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_AdditionAssignment(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_SubtractionAssignment(TilePosition, TilePosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_MultiplicationAssignment(TilePosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_DivisionAssignment(TilePosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    Rescale(WalkPosition): PrivateScope, Public, Static, HideBySig
+    Rescale(Position): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.UnitType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+    System.IDisposable
+  Properties:
+    System.Collections.Generic.List`1[BroodWar.Api.UnitType] AllMacroTypes 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.UnitType] AllUnitTypes 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Upgrade] UpgradesWhat 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Tech] ResearchesWhat 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.UnitType] BuildsWhat 'get ' : 
+    Boolean CanBuildAddon 'get ' : 
+    Boolean IsMineralField 'get ' : 
+    Boolean ProducesLarva 'get ' : 
+    Boolean ProducesCreep 'get ' : 
+    Boolean IsSpell 'get ' : 
+    Boolean IsSpecialBuilding 'get ' : 
+    Boolean IsFlagBeacon 'get ' : 
+    Boolean IsBeacon 'get ' : 
+    Boolean IsPowerup 'get ' : 
+    Boolean IsHero 'get ' : 
+    Boolean IsNeutral 'get ' : 
+    Boolean IsFlyingBuilding 'get ' : 
+    Boolean IsAddon 'get ' : 
+    Boolean IsBuilding 'get ' : 
+    Boolean IsCloakable 'get ' : 
+    Boolean IsBurrowable 'get ' : 
+    Boolean IsTwoUnitsInOneEgg 'get ' : 
+    Boolean RequiresCreep 'get ' : 
+    Boolean RequiresPsi 'get ' : 
+    Boolean IsWorker 'get ' : 
+    Boolean IsRefinery 'get ' : 
+    Boolean IsResourceDepot 'get ' : 
+    Boolean IsResourceContainer 'get ' : 
+    Boolean IsDetector 'get ' : 
+    Boolean IsRobotic 'get ' : 
+    Boolean IsMechanical 'get ' : 
+    Boolean IsOrganic 'get ' : 
+    Boolean IsInvincible 'get ' : 
+    Boolean HasPermanentCloak 'get ' : 
+    Boolean IsSpellcaster 'get ' : 
+    Boolean RegeneratesHp 'get ' : 
+    Boolean IsFlyer 'get ' : 
+    Boolean CanMove 'get ' : 
+    Boolean CanAttack 'get ' : 
+    Boolean CanProduce 'get ' : 
+    Int32 TurnRadius 'get ' : 
+    Int32 HaltDistance 'get ' : 
+    Int32 Acceleration 'get ' : 
+    Double TopSpeed 'get ' : 
+    Int32 MaxAirHits 'get ' : 
+    BroodWar.Api.Weapon AirWeapon 'get ' : 
+    Int32 MaxGroundHits 'get ' : 
+    BroodWar.Api.Weapon GroundWeapon 'get ' : 
+    Int32 SightRange 'get ' : 
+    Int32 SeekRange 'get ' : 
+    Int32 DimensionDown 'get ' : 
+    Int32 DimensionRight 'get ' : 
+    Int32 DimensionUp 'get ' : 
+    Int32 DimensionLeft 'get ' : 
+    BroodWar.Api.TilePosition TileSize 'get ' : 
+    Int32 TileHeight 'get ' : 
+    Int32 TileWidth 'get ' : 
+    BroodWar.Api.Enum.UnitSizeType Size 'get ' : 
+    Int32 DestroyScore 'get ' : 
+    Int32 BuildScore 'get ' : 
+    Int32 ProvidedSpace 'get ' : 
+    Int32 RequiredSpace 'get ' : 
+    Int32 ProvidedSupply 'get ' : 
+    BroodWar.Api.Price Price 'get ' : 
+    Int32 Armor 'get ' : 
+    Int32 MaxEnergy 'get ' : 
+    Int32 MaxShields 'get ' : 
+    Int32 MaxHitPoints 'get ' : 
+    BroodWar.Api.Upgrade ArmorUpgrade 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Upgrade] Upgrades 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Tech] Abilities 'get ' : 
+    BroodWar.Api.Tech CloakingTech 'get ' : 
+    BroodWar.Api.Tech RequiredTech 'get ' : 
+    System.Collections.Generic.Dictionary`2[BroodWar.Api.UnitType,System.Int32] RequiredUnits 'get ' : 
+    System.Tuple`2[BroodWar.Api.UnitType,System.Int32] WhatBuilds 'get ' : 
+    BroodWar.Api.Race Race 'get ' : 
+    BroodWar.Api.Enum.UnitType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    get_AllUnitTypes(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_AllMacroTypes(): PrivateScope, Public, Static, HideBySig, SpecialName
+    Get(UnitType): PrivateScope, Public, Static, HideBySig
+    op_Equality(UnitType, UnitType): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(UnitType, UnitType): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(UnitType): PrivateScope, Public, HideBySig
+    get_Race(): PrivateScope, Public, HideBySig, SpecialName
+    get_WhatBuilds(): PrivateScope, Public, HideBySig, SpecialName
+    get_RequiredUnits(): PrivateScope, Public, HideBySig, SpecialName
+    get_RequiredTech(): PrivateScope, Public, HideBySig, SpecialName
+    get_CloakingTech(): PrivateScope, Public, HideBySig, SpecialName
+    get_Abilities(): PrivateScope, Public, HideBySig, SpecialName
+    get_Upgrades(): PrivateScope, Public, HideBySig, SpecialName
+    get_ArmorUpgrade(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxHitPoints(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxShields(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxEnergy(): PrivateScope, Public, HideBySig, SpecialName
+    get_Armor(): PrivateScope, Public, HideBySig, SpecialName
+    get_Price(): PrivateScope, Public, HideBySig, SpecialName
+    get_ProvidedSupply(): PrivateScope, Public, HideBySig, SpecialName
+    get_RequiredSpace(): PrivateScope, Public, HideBySig, SpecialName
+    get_ProvidedSpace(): PrivateScope, Public, HideBySig, SpecialName
+    get_BuildScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_DestroyScore(): PrivateScope, Public, HideBySig, SpecialName
+    get_Size(): PrivateScope, Public, HideBySig, SpecialName
+    get_TileWidth(): PrivateScope, Public, HideBySig, SpecialName
+    get_TileHeight(): PrivateScope, Public, HideBySig, SpecialName
+    get_TileSize(): PrivateScope, Public, HideBySig, SpecialName
+    get_DimensionLeft(): PrivateScope, Public, HideBySig, SpecialName
+    get_DimensionUp(): PrivateScope, Public, HideBySig, SpecialName
+    get_DimensionRight(): PrivateScope, Public, HideBySig, SpecialName
+    get_DimensionDown(): PrivateScope, Public, HideBySig, SpecialName
+    get_SeekRange(): PrivateScope, Public, HideBySig, SpecialName
+    get_SightRange(): PrivateScope, Public, HideBySig, SpecialName
+    get_GroundWeapon(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxGroundHits(): PrivateScope, Public, HideBySig, SpecialName
+    get_AirWeapon(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaxAirHits(): PrivateScope, Public, HideBySig, SpecialName
+    get_TopSpeed(): PrivateScope, Public, HideBySig, SpecialName
+    get_Acceleration(): PrivateScope, Public, HideBySig, SpecialName
+    get_HaltDistance(): PrivateScope, Public, HideBySig, SpecialName
+    get_TurnRadius(): PrivateScope, Public, HideBySig, SpecialName
+    get_CanProduce(): PrivateScope, Public, HideBySig, SpecialName
+    get_CanAttack(): PrivateScope, Public, HideBySig, SpecialName
+    get_CanMove(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsFlyer(): PrivateScope, Public, HideBySig, SpecialName
+    get_RegeneratesHp(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsSpellcaster(): PrivateScope, Public, HideBySig, SpecialName
+    get_HasPermanentCloak(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsInvincible(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsOrganic(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsMechanical(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsRobotic(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDetector(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsResourceContainer(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsResourceDepot(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsRefinery(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsWorker(): PrivateScope, Public, HideBySig, SpecialName
+    get_RequiresPsi(): PrivateScope, Public, HideBySig, SpecialName
+    get_RequiresCreep(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsTwoUnitsInOneEgg(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBurrowable(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsCloakable(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBuilding(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsAddon(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsFlyingBuilding(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsNeutral(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsHero(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsPowerup(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBeacon(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsFlagBeacon(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsSpecialBuilding(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsSpell(): PrivateScope, Public, HideBySig, SpecialName
+    get_ProducesCreep(): PrivateScope, Public, HideBySig, SpecialName
+    get_ProducesLarva(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsMineralField(): PrivateScope, Public, HideBySig, SpecialName
+    get_CanBuildAddon(): PrivateScope, Public, HideBySig, SpecialName
+    get_BuildsWhat(): PrivateScope, Public, HideBySig, SpecialName
+    get_ResearchesWhat(): PrivateScope, Public, HideBySig, SpecialName
+    get_UpgradesWhat(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(UnitType): PrivateScope, Public, HideBySig
+Class BroodWar.Api.Region: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+  Properties:
+    BroodWar.Api.Region ClosestInaccessibleRegion 'get ' : 
+    BroodWar.Api.Region ClosestAccessibleRegion 'get ' : 
+    System.Drawing.Rectangle Bounds 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Region] Neighbours 'get ' : 
+    Boolean IsAccessible 'get ' : 
+    Int32 DefensePriority 'get ' : 
+    Boolean IsHigherGround 'get ' : 
+    BroodWar.Api.Position Center 'get ' : 
+    Int32 RegionGroupId 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_RegionGroupId(): PrivateScope, Public, HideBySig, SpecialName
+    get_Center(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsHigherGround(): PrivateScope, Public, HideBySig, SpecialName
+    get_DefensePriority(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsAccessible(): PrivateScope, Public, HideBySig, SpecialName
+    get_Neighbours(): PrivateScope, Public, HideBySig, SpecialName
+    get_Bounds(): PrivateScope, Public, HideBySig, SpecialName
+    get_ClosestAccessibleRegion(): PrivateScope, Public, HideBySig, SpecialName
+    get_ClosestInaccessibleRegion(): PrivateScope, Public, HideBySig, SpecialName
+    DistanceTo(Region): PrivateScope, Public, HideBySig
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Region): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Region, Region): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Region, Region): PrivateScope, Public, Static, HideBySig, SpecialName
+Class BroodWar.Api.UnitCommand: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(BroodWar.Api.Unit, BroodWar.Api.Enum.UnitCommandType, BroodWar.Api.Unit, Int32, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsQueued 'get ' : 
+    Int32 Slot 'get ' : 
+    BroodWar.Api.Upgrade Upgrade 'get ' : 
+    BroodWar.Api.Tech Tech 'get ' : 
+    BroodWar.Api.UnitType UnitType 'get ' : 
+    BroodWar.Api.TilePosition TargetTilePosition 'get ' : 
+    BroodWar.Api.Position TargetPosition 'get ' : 
+    BroodWar.Api.Unit Target 'get ' : 
+    BroodWar.Api.Unit Unit 'get ' : 
+    BroodWar.Api.Enum.UnitCommandType Type 'get ' : 
+  Methods:
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(UnitCommandType): PrivateScope, Public, HideBySig
+    get_Unit(): PrivateScope, Public, HideBySig, SpecialName
+    get_Target(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetTilePosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_UnitType(): PrivateScope, Public, HideBySig, SpecialName
+    get_Tech(): PrivateScope, Public, HideBySig, SpecialName
+    get_Upgrade(): PrivateScope, Public, HideBySig, SpecialName
+    get_Slot(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsQueued(): PrivateScope, Public, HideBySig, SpecialName
+    Attack(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Attack(Unit, Position, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Build(Unit, TilePosition, UnitType): PrivateScope, Public, Static, HideBySig
+    BuildAddon(Unit, UnitType): PrivateScope, Public, Static, HideBySig
+    Train(Unit, UnitType): PrivateScope, Public, Static, HideBySig
+    Morph(Unit, UnitType): PrivateScope, Public, Static, HideBySig
+    Research(Unit, Tech): PrivateScope, Public, Static, HideBySig
+    PerformUpgrade(Unit, Upgrade): PrivateScope, Public, Static, HideBySig
+    SetRallyPoint(Unit, Unit): PrivateScope, Public, Static, HideBySig
+    SetRallyPoint(Unit, Position): PrivateScope, Public, Static, HideBySig
+    Move(Unit, Position, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Patrol(Unit, Position, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    HoldPosition(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Stop(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Follow(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Gather(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    ReturnCargo(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Repair(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Burrow(Unit): PrivateScope, Public, Static, HideBySig
+    Unburrow(Unit): PrivateScope, Public, Static, HideBySig
+    Cloak(Unit): PrivateScope, Public, Static, HideBySig
+    Decloak(Unit): PrivateScope, Public, Static, HideBySig
+    Siege(Unit): PrivateScope, Public, Static, HideBySig
+    Unsiege(Unit): PrivateScope, Public, Static, HideBySig
+    Lift(Unit): PrivateScope, Public, Static, HideBySig
+    Land(Unit, TilePosition): PrivateScope, Public, Static, HideBySig
+    Load(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    Unload(Unit, Unit): PrivateScope, Public, Static, HideBySig
+    UnloadAll(Unit, Position, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    UnloadAll(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    RightClick(Unit, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    RightClick(Unit, Position, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    HaltConstruction(Unit): PrivateScope, Public, Static, HideBySig
+    CancelConstruction(Unit): PrivateScope, Public, Static, HideBySig
+    CancelAddon(Unit): PrivateScope, Public, Static, HideBySig
+    CancelTrain(Unit, Int32): PrivateScope, Public, Static, HideBySig
+    CancelMorph(Unit): PrivateScope, Public, Static, HideBySig
+    CancelResearch(Unit): PrivateScope, Public, Static, HideBySig
+    CancelUpgrade(Unit): PrivateScope, Public, Static, HideBySig
+    UseTech(Unit, Tech, Unit): PrivateScope, Public, Static, HideBySig
+    UseTech(Unit, Tech, Position): PrivateScope, Public, Static, HideBySig
+    UseTech(Unit, Tech): PrivateScope, Public, Static, HideBySig
+    PlaceCop(Unit, TilePosition): PrivateScope, Public, Static, HideBySig
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(UnitCommand): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(UnitCommand, UnitCommand): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(UnitCommand, UnitCommand): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Unit: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+  Properties:
+    Boolean IsUpgrading 'get ' : 
+    Boolean IsPowered 'get ' : 
+    Boolean IsUnderStorm 'get ' : 
+    Boolean IsUnderDisruptionWeb 'get ' : 
+    Boolean IsUnderDarkSwarm 'get ' : 
+    Boolean IsUnderAttack 'get ' : 
+    Boolean IsTraining 'get ' : 
+    Boolean IsStuck 'get ' : 
+    Boolean IsStimmed 'get ' : 
+    Boolean IsStasised 'get ' : 
+    Boolean IsStartingAttack 'get ' : 
+    Boolean IsSieged 'get ' : 
+    Boolean IsSelected 'get ' : 
+    Boolean IsResearching 'get ' : 
+    Boolean IsRepairing 'get ' : 
+    Boolean IsPlagued 'get ' : 
+    Boolean IsPatrolling 'get ' : 
+    Boolean IsParasited 'get ' : 
+    Boolean IsMoving 'get ' : 
+    Boolean IsMorphing 'get ' : 
+    Boolean IsMaelstrommed 'get ' : 
+    Boolean IsLockedDown 'get ' : 
+    Boolean IsLoaded 'get ' : 
+    Boolean IsLifted 'get ' : 
+    Boolean IsIrradiated 'get ' : 
+    Boolean IsInvincible 'get ' : 
+    Boolean IsInterruptible 'get ' : 
+    Boolean IsIdle 'get ' : 
+    Boolean IsHoldingPosition 'get ' : 
+    Boolean IsHallucination 'get ' : 
+    Boolean IsGatheringMinerals 'get ' : 
+    Boolean IsGatheringGas 'get ' : 
+    Boolean IsFollowing 'get ' : 
+    Boolean IsEnsnared 'get ' : 
+    Boolean IsDetected 'get ' : 
+    Boolean IsDefenseMatrixed 'get ' : 
+    Boolean IsConstructing 'get ' : 
+    Boolean IsCompleted 'get ' : 
+    Boolean IsCloaked 'get ' : 
+    Boolean IsCarryingMinerals 'get ' : 
+    Boolean IsCarryingGas 'get ' : 
+    Boolean IsBurrowed 'get ' : 
+    Boolean IsBraking 'get ' : 
+    Boolean IsBlind 'get ' : 
+    Boolean IsBeingHealed 'get ' : 
+    Boolean IsBeingGathered 'get ' : 
+    Boolean IsBeingConstructed 'get ' : 
+    Boolean IsAttackFrame 'get ' : 
+    Boolean IsAttacking 'get ' : 
+    Boolean IsAccelerating 'get ' : 
+    Boolean HasNuke 'get ' : 
+    Boolean Exists 'get ' : 
+    IntPtr ClientInfo 'get set' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] Larva 'get ' : 
+    BroodWar.Api.Unit Hatchery 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] Interceptors 'get ' : 
+    BroodWar.Api.Unit Carrier 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] LoadedUnits 'get ' : 
+    BroodWar.Api.Unit Transport 'get ' : 
+    BroodWar.Api.Unit PowerUp 'get ' : 
+    BroodWar.Api.Unit NydusExit 'get ' : 
+    BroodWar.Api.Unit Addon 'get ' : 
+    BroodWar.Api.Unit RallyUnit 'get ' : 
+    BroodWar.Api.Position RallyPosition 'get ' : 
+    BroodWar.Api.Position OrderTargetPosition 'get ' : 
+    BroodWar.Api.Unit OrderTarget 'get ' : 
+    BroodWar.Api.Enum.OrderType SecondaryOrder 'get ' : 
+    BroodWar.Api.Enum.OrderType Order 'get ' : 
+    BroodWar.Api.Position TargetPosition 'get ' : 
+    BroodWar.Api.Unit Target 'get ' : 
+    BroodWar.Api.Unit BuildUnit 'get ' : 
+    Int32 RemainingUpgradeTime 'get ' : 
+    Int32 RemainingResearchTime 'get ' : 
+    Int32 RemainingTrainTime 'get ' : 
+    Int32 RemainingBuildTime 'get ' : 
+    BroodWar.Api.Upgrade Upgrade 'get ' : 
+    BroodWar.Api.Tech Tech 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.UnitType] TrainingQueue 'get ' : 
+    BroodWar.Api.UnitType BuildType 'get ' : 
+    Int32 StimTimer 'get ' : 
+    Int32 StasisTimer 'get ' : 
+    Int32 RemoveTimer 'get ' : 
+    Int32 PlagueTimer 'get ' : 
+    Int32 OrderTimer 'get ' : 
+    Int32 MaelstromTimer 'get ' : 
+    Int32 LockdownTimer 'get ' : 
+    Int32 IrradiateTimer 'get ' : 
+    Int32 EnsnareTimer 'get ' : 
+    Int32 DefenseMatrixTimer 'get ' : 
+    Int32 DefenseMatrixPoints 'get ' : 
+    Int32 SpellCooldown 'get ' : 
+    Int32 AirWeaponCooldown 'get ' : 
+    Int32 GroundWeaponCooldown 'get ' : 
+    Int32 SpiderMineCount 'get ' : 
+    Int32 ScarabCount 'get ' : 
+    Int32 InterceptorCount 'get ' : 
+    Int32 AcidSporeCount 'get ' : 
+    Int32 KillCount 'get ' : 
+    Int32 InitialResources 'get ' : 
+    Int32 InitialHitPoints 'get ' : 
+    BroodWar.Api.TilePosition InitialTilePosition 'get ' : 
+    BroodWar.Api.Position InitialPosition 'get ' : 
+    BroodWar.Api.UnitType InitialType 'get ' : 
+    BroodWar.Api.Player LastAttackingPlayer 'get ' : 
+    BroodWar.Api.UnitCommand LastCommand 'get ' : 
+    Int32 LastCommandFrame 'get ' : 
+    Int32 ResourceGroup 'get ' : 
+    Int32 Resources 'get ' : 
+    Int32 Energy 'get ' : 
+    Int32 Shields 'get ' : 
+    Int32 HitPoints 'get ' : 
+    Int32 Bottom 'get ' : 
+    Int32 Right 'get ' : 
+    Int32 Top  'get ' : 
+    Int32 Left 'get ' : 
+    BroodWar.Api.Region Region 'get ' : 
+    Double VelocityY 'get ' : 
+    Double VelocityX 'get ' : 
+    Double Angle 'get ' : 
+    BroodWar.Api.TilePosition TilePosition 'get ' : 
+    BroodWar.Api.Position Position 'get ' : 
+    BroodWar.Api.UnitType UnitType 'get ' : 
+    BroodWar.Api.Player Player 'get ' : 
+    Int32 ReplayId 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    HaltConstruction(): PrivateScope, Public, HideBySig
+    CancelConstruction(): PrivateScope, Public, HideBySig
+    CancelAddon(): PrivateScope, Public, HideBySig
+    CancelTrain(Int32): PrivateScope, Public, HideBySig
+    CancelMorph(): PrivateScope, Public, HideBySig
+    CancelResearch(): PrivateScope, Public, HideBySig
+    CancelUpgrade(): PrivateScope, Public, HideBySig
+    UseTech(Tech, Unit): PrivateScope, Public, HideBySig
+    UseTech(Tech, Position): PrivateScope, Public, HideBySig
+    UseTech(Tech): PrivateScope, Public, HideBySig
+    PlaceCop(TilePosition): PrivateScope, Public, HideBySig
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Unit): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Unit, Unit): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Unit, Unit): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsAttackFrame(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBeingConstructed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBeingGathered(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBeingHealed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBlind(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBraking(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsBurrowed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsCarryingGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsCarryingMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsCloaked(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsCompleted(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsConstructing(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDefenseMatrixed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsDetected(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsEnsnared(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsFollowing(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsGatheringGas(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsGatheringMinerals(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsHallucination(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsHoldingPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsIdle(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsInterruptible(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsInvincible(): PrivateScope, Public, HideBySig, SpecialName
+    IsInWeaponRange(Unit): PrivateScope, Public, HideBySig
+    get_IsIrradiated(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsLifted(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsLoaded(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsLockedDown(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsMaelstrommed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsMorphing(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsMoving(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsParasited(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsPatrolling(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsPlagued(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsRepairing(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsResearching(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsSelected(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsSieged(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsStartingAttack(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsStasised(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsStimmed(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsStuck(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsTraining(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnderAttack(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnderDarkSwarm(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnderDisruptionWeb(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnderStorm(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsPowered(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUpgrading(): PrivateScope, Public, HideBySig, SpecialName
+    IsVisible(Player): PrivateScope, Public, HideBySig
+    IsVisible(): PrivateScope, Public, HideBySig
+    CanIssueCommand(UnitCommand): PrivateScope, Public, HideBySig
+    IssueCommand(UnitCommand): PrivateScope, Public, HideBySig
+    Attack(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Attack(Position, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Build(UnitType, TilePosition): PrivateScope, Public, HideBySig
+    BuildAddon(UnitType): PrivateScope, Public, HideBySig
+    Train(UnitType): PrivateScope, Public, HideBySig
+    Morph(UnitType): PrivateScope, Public, HideBySig
+    Research(Tech): PrivateScope, Public, HideBySig
+    PerformUpgrade(Upgrade): PrivateScope, Public, HideBySig
+    SetRallyPoint(Unit): PrivateScope, Public, HideBySig
+    SetRallyPoint(Position): PrivateScope, Public, HideBySig
+    Move(Position, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Patrol(Position, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    HoldPosition(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Stop(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Follow(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Gather(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    ReturnCargo(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Repair(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Burrow(): PrivateScope, Public, HideBySig
+    Unburrow(): PrivateScope, Public, HideBySig
+    Cloak(): PrivateScope, Public, HideBySig
+    Decloak(): PrivateScope, Public, HideBySig
+    Siege(): PrivateScope, Public, HideBySig
+    Unsiege(): PrivateScope, Public, HideBySig
+    Lift(): PrivateScope, Public, HideBySig
+    Land(TilePosition): PrivateScope, Public, HideBySig
+    Load(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    Unload(Unit): PrivateScope, Public, HideBySig
+    UnloadAll(Position, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    UnloadAll(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RightClick(Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    RightClick(Position, Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_ReplayId(): PrivateScope, Public, HideBySig, SpecialName
+    get_Player(): PrivateScope, Public, HideBySig, SpecialName
+    get_UnitType(): PrivateScope, Public, HideBySig, SpecialName
+    get_Position(): PrivateScope, Public, HideBySig, SpecialName
+    get_TilePosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_Angle(): PrivateScope, Public, HideBySig, SpecialName
+    get_VelocityX(): PrivateScope, Public, HideBySig, SpecialName
+    get_VelocityY(): PrivateScope, Public, HideBySig, SpecialName
+    get_Region(): PrivateScope, Public, HideBySig, SpecialName
+    get_Left(): PrivateScope, Public, HideBySig, SpecialName
+    get_Top(): PrivateScope, Public, HideBySig, SpecialName
+    get_Right(): PrivateScope, Public, HideBySig, SpecialName
+    get_Bottom(): PrivateScope, Public, HideBySig, SpecialName
+    get_HitPoints(): PrivateScope, Public, HideBySig, SpecialName
+    get_Shields(): PrivateScope, Public, HideBySig, SpecialName
+    get_Energy(): PrivateScope, Public, HideBySig, SpecialName
+    get_Resources(): PrivateScope, Public, HideBySig, SpecialName
+    get_ResourceGroup(): PrivateScope, Public, HideBySig, SpecialName
+    Distance(Position): PrivateScope, Public, HideBySig
+    Distance(Unit): PrivateScope, Public, HideBySig
+    HasPath(Position): PrivateScope, Public, HideBySig
+    HasPath(Unit): PrivateScope, Public, HideBySig
+    get_LastCommandFrame(): PrivateScope, Public, HideBySig, SpecialName
+    get_LastCommand(): PrivateScope, Public, HideBySig, SpecialName
+    get_LastAttackingPlayer(): PrivateScope, Public, HideBySig, SpecialName
+    get_InitialType(): PrivateScope, Public, HideBySig, SpecialName
+    get_InitialPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_InitialTilePosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_InitialHitPoints(): PrivateScope, Public, HideBySig, SpecialName
+    get_InitialResources(): PrivateScope, Public, HideBySig, SpecialName
+    get_KillCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_AcidSporeCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_InterceptorCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_ScarabCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_SpiderMineCount(): PrivateScope, Public, HideBySig, SpecialName
+    get_GroundWeaponCooldown(): PrivateScope, Public, HideBySig, SpecialName
+    get_AirWeaponCooldown(): PrivateScope, Public, HideBySig, SpecialName
+    get_SpellCooldown(): PrivateScope, Public, HideBySig, SpecialName
+    get_DefenseMatrixPoints(): PrivateScope, Public, HideBySig, SpecialName
+    get_DefenseMatrixTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_EnsnareTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_IrradiateTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_LockdownTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_MaelstromTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_OrderTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_PlagueTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemoveTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_StasisTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_StimTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_BuildType(): PrivateScope, Public, HideBySig, SpecialName
+    get_TrainingQueue(): PrivateScope, Public, HideBySig, SpecialName
+    get_Tech(): PrivateScope, Public, HideBySig, SpecialName
+    get_Upgrade(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemainingBuildTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemainingTrainTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemainingResearchTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemainingUpgradeTime(): PrivateScope, Public, HideBySig, SpecialName
+    get_BuildUnit(): PrivateScope, Public, HideBySig, SpecialName
+    get_Target(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_Order(): PrivateScope, Public, HideBySig, SpecialName
+    get_SecondaryOrder(): PrivateScope, Public, HideBySig, SpecialName
+    get_OrderTarget(): PrivateScope, Public, HideBySig, SpecialName
+    get_OrderTargetPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_RallyPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_RallyUnit(): PrivateScope, Public, HideBySig, SpecialName
+    get_Addon(): PrivateScope, Public, HideBySig, SpecialName
+    get_NydusExit(): PrivateScope, Public, HideBySig, SpecialName
+    get_PowerUp(): PrivateScope, Public, HideBySig, SpecialName
+    get_Transport(): PrivateScope, Public, HideBySig, SpecialName
+    get_LoadedUnits(): PrivateScope, Public, HideBySig, SpecialName
+    get_Carrier(): PrivateScope, Public, HideBySig, SpecialName
+    get_Interceptors(): PrivateScope, Public, HideBySig, SpecialName
+    get_Hatchery(): PrivateScope, Public, HideBySig, SpecialName
+    get_Larva(): PrivateScope, Public, HideBySig, SpecialName
+    UnitsInRadius(Int32): PrivateScope, Public, HideBySig
+    UnitsInWeaponRange(Weapon): PrivateScope, Public, HideBySig
+    get_ClientInfo(): PrivateScope, Public, HideBySig, SpecialName
+    set_ClientInfo(IntPtr): PrivateScope, Public, HideBySig, SpecialName
+    get_Exists(): PrivateScope, Public, HideBySig, SpecialName
+    get_HasNuke(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsAccelerating(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsAttacking(): PrivateScope, Public, HideBySig, SpecialName
+Class BroodWar.Api.Event: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(BroodWar.Api.Event): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsWinner 'get set' : 
+    BroodWar.Api.Player Player 'get set' : 
+    BroodWar.Api.Unit Unit 'get set' : 
+    System.String Text 'get set' : 
+    BroodWar.Api.Position Position 'get set' : 
+    BroodWar.Api.Enum.EventType Type 'get set' : 
+  Methods:
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    set_Type(EventType): PrivateScope, Public, HideBySig, SpecialName
+    get_Position(): PrivateScope, Public, HideBySig, SpecialName
+    set_Position(Position): PrivateScope, Public, HideBySig, SpecialName
+    get_Text(): PrivateScope, Public, HideBySig, SpecialName
+    set_Text(String): PrivateScope, Public, HideBySig, SpecialName
+    get_Unit(): PrivateScope, Public, HideBySig, SpecialName
+    set_Unit(Unit): PrivateScope, Public, HideBySig, SpecialName
+    get_Player(): PrivateScope, Public, HideBySig, SpecialName
+    set_Player(Player): PrivateScope, Public, HideBySig, SpecialName
+    get_IsWinner(): PrivateScope, Public, HideBySig, SpecialName
+    set_IsWinner(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    MatchStart(): PrivateScope, Public, Static, HideBySig
+    MatchEnd(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    MatchFrame(): PrivateScope, Public, Static, HideBySig
+    MenuFrame(): PrivateScope, Public, Static, HideBySig
+    SendText(String): PrivateScope, Public, Static, HideBySig
+    ReceiveText(Player, String): PrivateScope, Public, Static, HideBySig
+    PlayerLeft(Player): PrivateScope, Public, Static, HideBySig
+    NukeDetect(Position): PrivateScope, Public, Static, HideBySig
+    UnitDiscover(Unit): PrivateScope, Public, Static, HideBySig
+    UnitEvade(Unit): PrivateScope, Public, Static, HideBySig
+    UnitShow(Unit): PrivateScope, Public, Static, HideBySig
+    UnitHide(Unit): PrivateScope, Public, Static, HideBySig
+    UnitCreate(Unit): PrivateScope, Public, Static, HideBySig
+    UnitDestroy(Unit): PrivateScope, Public, Static, HideBySig
+    UnitMorph(Unit): PrivateScope, Public, Static, HideBySig
+    UnitRenegade(Unit): PrivateScope, Public, Static, HideBySig
+    SaveGame(String): PrivateScope, Public, Static, HideBySig
+    UnitComplete(Unit): PrivateScope, Public, Static, HideBySig
+    op_Equality(Event, Event): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Event, Event): PrivateScope, Public, Static, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Game: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed
+  Properties:
+    Int32 LastEventTime 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Region] AllRegions 'get ' : 
+    Int32 CountdownTimer 'get ' : 
+    Int32 ElapsedTime 'get ' : 
+    Int32 InstanceNumber 'get ' : 
+    Int32 ReplayFrameCount 'get ' : 
+    Boolean IsLatComEnabled 'get ' : 
+    Boolean IsDebug 'get ' : 
+    Int32 Revision 'get ' : 
+    Int32 RemainingLatencyTime 'get ' : 
+    Int32 RemainingLatencyFrames 'get ' : 
+    Int32 LatencyTime 'get ' : 
+    Int32 LatencyFrames 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Player] Observers 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Player] Enemies 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Player] Allies 'get ' : 
+    BroodWar.Api.Player Neutral 'get ' : 
+    BroodWar.Api.Player Enemy 'get ' : 
+    BroodWar.Api.Player Self 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] GetSelectedUnits 'get ' : 
+    Boolean IsReplay 'get ' : 
+    Boolean IsPaused 'get ' : 
+    Boolean IsBattleNet 'get ' : 
+    Boolean IsMultiplayer 'get ' : 
+    Boolean IsInGame 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.TilePosition] StartLocations 'get ' : 
+    System.String MapHash 'get ' : 
+    System.String MapName 'get ' : 
+    System.String MapPathName 'get ' : 
+    System.String MapFileName 'get ' : 
+    Int32 MapHeight 'get ' : 
+    Int32 MapWidth 'get ' : 
+    BroodWar.Api.Enum.ErrorType LastError 'get set' : 
+    BroodWar.Api.Position ScreenPosition 'get ' : 
+    BroodWar.Api.Position MousePosition 'get ' : 
+    Double AverageFps 'get ' : 
+    Int32 Fps  'get ' : 
+    Int32 FrameCount 'get ' : 
+    Int32 Latency 'get ' : 
+    BroodWar.Api.Enum.GameType GameType 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.Event] Events 'get ' : 
+    System.Collections.Generic.List`1[BroodWar.Api.Position] NukeDots 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Bullet] Bullets 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] StaticNeutralUnits 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] StaticGeysers 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] StaticMinerals 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] NeutralUnits 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] Geysers 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] Minerals 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Unit] AllUnits 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Player] Players 'get ' : 
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Force] Forces 'get ' : 
+  Methods:
+    get_GetSelectedUnits(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Self(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Enemy(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Neutral(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Allies(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Enemies(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Observers(): PrivateScope, Public, Static, HideBySig, SpecialName
+    DrawText(Position, String, Object[]): PrivateScope, Public, Static, HideBySig
+    DrawTextCType(CoordinateType, Int32, Int32, String, Object[]): PrivateScope, Public, Static, HideBySig
+    DrawTextMap(Int32, Int32, String, Object[]): PrivateScope, Public, Static, HideBySig
+    DrawTextMouse(Int32, Int32, String, Object[]): PrivateScope, Public, Static, HideBySig
+    DrawTextScreen(Int32, Int32, String, Object[]): PrivateScope, Public, Static, HideBySig
+    DrawBox(Position, Position, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawBoxCType(CoordinateType, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawBoxMap(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawBoxMouse(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawBoxScreen(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawTriangle(Position, Position, Position, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawTriangleCType(CoordinateType, Int32, Int32, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawTriangleMap(Int32, Int32, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawTriangleMouse(Int32, Int32, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawTriangleScreen(Int32, Int32, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawCircle(Position, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawCircleCType(CoordinateType, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawCircleMap(Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawCircleMouse(Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawCircleScreen(Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawEllipse(Position, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawEllipseCType(CoordinateType, Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawEllipseMap(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawEllipseMouse(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawEllipseScreen(Int32, Int32, Int32, Int32, Color, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    DrawDot(Position, Color): PrivateScope, Public, Static, HideBySig
+    DrawDotCType(CoordinateType, Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawDotMap(Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawDotMouse(Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawDotScreen(Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawLine(Position, Position, Color): PrivateScope, Public, Static, HideBySig
+    DrawLineCType(CoordinateType, Int32, Int32, Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawLineMap(Int32, Int32, Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawLineMouse(Int32, Int32, Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    DrawLineScreen(Int32, Int32, Int32, Int32, Color): PrivateScope, Public, Static, HideBySig
+    get_LatencyFrames(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_LatencyTime(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_RemainingLatencyFrames(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_RemainingLatencyTime(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Revision(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsDebug(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsLatComEnabled(): PrivateScope, Public, Static, HideBySig, SpecialName
+    SetLatCom(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_ReplayFrameCount(): PrivateScope, Public, Static, HideBySig, SpecialName
+    SetGui(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_InstanceNumber(): PrivateScope, Public, Static, HideBySig, SpecialName
+    GetApm(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    SetMap(String): PrivateScope, Public, Static, HideBySig
+    SetFrameSkip(Int32): PrivateScope, Public, Static, HideBySig
+    HasPath(Position, Position): PrivateScope, Public, Static, HideBySig
+    SetAlliance(Player, Boolean(HasFieldMarshal), Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    SetVision(Player, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_ElapsedTime(): PrivateScope, Public, Static, HideBySig, SpecialName
+    SetCommandOptimizationLevel(Int32): PrivateScope, Public, Static, HideBySig
+    get_CountdownTimer(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_AllRegions(): PrivateScope, Public, Static, HideBySig, SpecialName
+    GetRegionAt(Position): PrivateScope, Public, Static, HideBySig
+    GetRegionAt(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    get_LastEventTime(): PrivateScope, Public, Static, HideBySig, SpecialName
+    SetRevealAll(Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    GetBuildLocation(UnitType, TilePosition, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    GetDamageFrom(UnitType, UnitType, Player, Player): PrivateScope, Public, Static, HideBySig
+    GetDamageTo(UnitType, UnitType, Player, Player): PrivateScope, Public, Static, HideBySig
+    get_Forces(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Players(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_AllUnits(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Minerals(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Geysers(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_NeutralUnits(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_StaticMinerals(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_StaticGeysers(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_StaticNeutralUnits(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Bullets(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_NukeDots(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Events(): PrivateScope, Public, Static, HideBySig, SpecialName
+    GetForceById(Int32): PrivateScope, Public, Static, HideBySig
+    GetPlayerById(Int32): PrivateScope, Public, Static, HideBySig
+    GetUnitById(Int32): PrivateScope, Public, Static, HideBySig
+    IndexToUnit(Int32): PrivateScope, Public, Static, HideBySig
+    Region(Int32): PrivateScope, Public, Static, HideBySig
+    get_GameType(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Latency(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_FrameCount(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_Fps(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_AverageFps(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MousePosition(): PrivateScope, Public, Static, HideBySig, SpecialName
+    GetMouseState(MouseButton): PrivateScope, Public, Static, HideBySig
+    GetKeyState(Key): PrivateScope, Public, Static, HideBySig
+    get_ScreenPosition(): PrivateScope, Public, Static, HideBySig, SpecialName
+    SetScreenPosition(Position): PrivateScope, Public, Static, HideBySig
+    SetScreenPosition(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    PingMinimap(Position): PrivateScope, Public, Static, HideBySig
+    PingMinimap(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    IsFlagEnabled(Flag): PrivateScope, Public, Static, HideBySig
+    EnableFlag(Flag): PrivateScope, Public, Static, HideBySig
+    GetUnitsOnTile(TilePosition): PrivateScope, Public, Static, HideBySig
+    GetUnitsOnTile(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    GetUnitsInRectangle(Position, Position): PrivateScope, Public, Static, HideBySig
+    GetUnitsInRectangle(Int32, Int32, Int32, Int32): PrivateScope, Public, Static, HideBySig
+    GetUnitsInRadius(Position, Int32): PrivateScope, Public, Static, HideBySig
+    GetUnitsInRadius(Int32, Int32, Int32): PrivateScope, Public, Static, HideBySig
+    get_LastError(): PrivateScope, Public, Static, HideBySig, SpecialName
+    set_LastError(ErrorType): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapWidth(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapHeight(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapFileName(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapPathName(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapName(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_MapHash(): PrivateScope, Public, Static, HideBySig, SpecialName
+    IsWalkable(WalkPosition): PrivateScope, Public, Static, HideBySig
+    IsWalkable(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    GetGroundHeight(TilePosition): PrivateScope, Public, Static, HideBySig
+    GetGroundHeight(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    IsBuildable(TilePosition, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    IsBuildable(Int32, Int32, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    IsVisible(TilePosition): PrivateScope, Public, Static, HideBySig
+    IsVisible(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    IsExplored(TilePosition): PrivateScope, Public, Static, HideBySig
+    IsExplored(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    HasCreep(TilePosition): PrivateScope, Public, Static, HideBySig
+    HasCreep(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    HasPower(TilePosition, Int32, Int32, UnitType): PrivateScope, Public, Static, HideBySig
+    HasPower(Int32, Int32, Int32, Int32, UnitType): PrivateScope, Public, Static, HideBySig
+    HasPower(TilePosition, UnitType): PrivateScope, Public, Static, HideBySig
+    HasPower(Int32, Int32, UnitType): PrivateScope, Public, Static, HideBySig
+    HasPowerPrecise(Position, UnitType): PrivateScope, Public, Static, HideBySig
+    HasPowerPrecise(Int32, Int32, UnitType): PrivateScope, Public, Static, HideBySig
+    CanBuildHere(TilePosition, UnitType, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CanMake(UnitType, Unit): PrivateScope, Public, Static, HideBySig
+    CanResearch(TechType, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    CanUpgrade(UpgradeType, Unit, Boolean(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig
+    get_StartLocations(): PrivateScope, Public, Static, HideBySig, SpecialName
+    Write(String, Object[]): PrivateScope, Public, Static, HideBySig
+    SendText(Boolean(HasFieldMarshal), String, Object[]): PrivateScope, Public, Static, HideBySig
+    SendText(String, Object[]): PrivateScope, Public, Static, HideBySig
+    get_IsInGame(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsMultiplayer(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsBattleNet(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsPaused(): PrivateScope, Public, Static, HideBySig, SpecialName
+    get_IsReplay(): PrivateScope, Public, Static, HideBySig, SpecialName
+    PauseGame(): PrivateScope, Public, Static, HideBySig
+    ResumeGame(): PrivateScope, Public, Static, HideBySig
+    LeaveGame(): PrivateScope, Public, Static, HideBySig
+    RestartGame(): PrivateScope, Public, Static, HideBySig
+    SetLocalSpeed(Int32): PrivateScope, Public, Static, HideBySig
+    IssueCommand(List`1, UnitCommand): PrivateScope, Public, Static, HideBySig
+Class BroodWar.AiBase: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    OnStart(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnEnd(Boolean(HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnFrame(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnSendText(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnReceiveText(Player, String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnPlayerLeft(Player): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnNukeDetect(Position): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitDiscover(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitEvade(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitShow(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitHide(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitCreate(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitDestroy(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitMorph(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitRenegade(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnSaveGame(String): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnUnitComplete(Unit): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnPlayerDropped(Player): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+Struct BroodWar.Api.Enum.EventType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.EventType MatchStart = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType MatchEnd = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType MatchFrame = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType MenuFrame = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType SendText = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType ReceiveText = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType PlayerLeft = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType NukeDetect = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitDiscover = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitEvade = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitShow = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitHide = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitCreate = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitDestroy = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitMorph = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitRenegade = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType SaveGame = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType UnitComplete = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType PlayerDropped = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.EventType None = 19 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.RaceType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.RaceType Zerg = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.RaceType Terran = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.RaceType Protoss = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.RaceType Random = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.RaceType None = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.RaceType Unknown = 5 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.WeaponType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.WeaponType Gauss_Rifle = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Gauss_Rifle_Jim_Raynor = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType C_10_Canister_Rifle = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType C_10_Canister_Rifle_Sarah_Kerrigan = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType C_10_Canister_Rifle_Samir_Duran = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType C_10_Canister_Rifle_Infested_Duran = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType C_10_Canister_Rifle_Alexei_Stukov = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Fragmentation_Grenade = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Fragmentation_Grenade_Jim_Raynor = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Spider_Mines = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Twin_Autocannons = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Twin_Autocannons_Alan_Schezar = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Hellfire_Missile_Pack = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Hellfire_Missile_Pack_Alan_Schezar = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Arclite_Cannon = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Arclite_Cannon_Edmund_Duke = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Fusion_Cutter = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Gemini_Missiles = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Gemini_Missiles_Tom_Kazansky = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Burst_Lasers = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Burst_Lasers_Tom_Kazansky = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATS_Laser_Battery = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATS_Laser_Battery_Hero = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATS_Laser_Battery_Hyperion = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATA_Laser_Battery = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATA_Laser_Battery_Hero = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType ATA_Laser_Battery_Hyperion = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Flame_Thrower = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Flame_Thrower_Gui_Montag = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Arclite_Shock_Cannon = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Arclite_Shock_Cannon_Edmund_Duke = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Longbolt_Missile = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Claws = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Claws_Devouring_One = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Claws_Infested_Kerrigan = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Needle_Spines = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Needle_Spines_Hunter_Killer = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Kaiser_Blades = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Kaiser_Blades_Torrasque = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Toxic_Spores = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Spines = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Acid_Spore = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Acid_Spore_Kukulza = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Glave_Wurm = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Glave_Wurm_Kukulza = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Seeker_Spores = 45 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Subterranean_Tentacle = 46 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Suicide_Infested_Terran = 47 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Suicide_Scourge = 48 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Particle_Beam = 49 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psi_Blades = 50 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psi_Blades_Fenix = 51 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Phase_Disruptor = 52 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Phase_Disruptor_Fenix = 53 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psi_Assault = 54 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psionic_Shockwave = 55 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psionic_Shockwave_TZ_Archon = 56 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Dual_Photon_Blasters = 57 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Dual_Photon_Blasters_Mojo = 58 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Dual_Photon_Blasters_Artanis = 59 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Anti_Matter_Missiles = 60 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Anti_Matter_Missiles_Mojo = 61 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Anti_Matter_Missiles_Artanis = 62 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Phase_Disruptor_Cannon = 63 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Phase_Disruptor_Cannon_Danimoth = 64 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Pulse_Cannon = 65 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType STS_Photon_Cannon = 66 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType STA_Photon_Cannon = 67 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Scarab = 68 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Neutron_Flare = 69 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Halo_Rockets = 70 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Corrosive_Acid = 71 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Subterranean_Spines = 72 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Warp_Blades = 73 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Warp_Blades_Hero = 74 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Warp_Blades_Zeratul = 75 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Independant_Laser_Battery = 76 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Twin_Autocannons_Floor_Trap = 77 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Hellfire_Missile_Pack_Wall_Trap = 78 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Flame_Thrower_Wall_Trap = 79 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Hellfire_Missile_Pack_Floor_Trap = 80 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Yamato_Gun = 81 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Nuclear_Strike = 82 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Lockdown = 83 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType EMP_Shockwave = 84 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Irradiate = 85 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Parasite = 86 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Spawn_Broodlings = 87 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Ensnare = 88 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Dark_Swarm = 89 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Plague = 90 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Consume = 91 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Stasis_Field = 92 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Psionic_Storm = 93 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Disruption_Web = 94 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Restoration = 95 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Mind_Control = 96 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Feedback = 97 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Optical_Flare = 98 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Maelstrom = 99 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType None = 100 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.WeaponType Unknown = 101 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.DamageType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.DamageType Independent = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType Explosive = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType Concussive = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType Normal = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType IgnoreArmor = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType None = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.DamageType Unknown = 6 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.ExplosionType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.ExplosionType None = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Normal = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType RadialSplash = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType EnemySplash = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Lockdown = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType NuclearMissile = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Parasite = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Broodlings = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType EmpShockwave = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Irradiate = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Ensnare = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Plague = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType StasisField = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType DarkSwarm = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Consume = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType YamatoGun = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Restoration = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType DisruptionWeb = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType CorrosiveAcid = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType MindControl = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Feedback = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType OpticalFlare = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Maelstrom = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType AirSplash = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ExplosionType Unknown = 24 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.Targets: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.Targets None = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Air = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Ground = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Mechanical = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Organic = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets NonBuilding = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets NonRobotic = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Terrain = 64 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets OrgOrMech = 128 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Targets Own = 256 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.TechType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.TechType Stim_Packs = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Lockdown = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType EMP_Shockwave = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Spider_Mines = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Scanner_Sweep = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Tank_Siege_Mode = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Defensive_Matrix = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Irradiate = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Yamato_Gun = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Cloaking_Field = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Personnel_Cloaking = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Burrowing = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Infestation = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Spawn_Broodlings = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Dark_Swarm = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Plague = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Consume = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Ensnare = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Parasite = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Psionic_Storm = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Hallucination = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Recall = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Stasis_Field = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Archon_Warp = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Restoration = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Disruption_Web = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Mind_Control = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Dark_Archon_Meld = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Feedback = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Optical_Flare = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Maelstrom = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Lurker_Aspect = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Healing = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType None = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Unknown = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TechType Nuclear_Strike = 35 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.UpgradeType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.UpgradeType Terran_Infantry_Armor = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Terran_Vehicle_Plating = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Terran_Ship_Plating = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Zerg_Carapace = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Zerg_Flyer_Carapace = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Protoss_Ground_Armor = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Protoss_Air_Armor = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Terran_Infantry_Weapons = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Terran_Vehicle_Weapons = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Terran_Ship_Weapons = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Zerg_Melee_Attacks = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Zerg_Missile_Attacks = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Zerg_Flyer_Attacks = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Protoss_Ground_Weapons = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Protoss_Air_Weapons = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Protoss_Plasma_Shields = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType U_238_Shells = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Ion_Thrusters = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Titan_Reactor = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Ocular_Implants = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Moebius_Reactor = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Apollo_Reactor = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Colossus_Reactor = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Ventral_Sacs = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Antennae = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Pneumatized_Carapace = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Metabolic_Boost = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Adrenal_Glands = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Muscular_Augments = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Grooved_Spines = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Gamete_Meiosis = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Metasynaptic_Node = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Singularity_Charge = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Leg_Enhancements = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Scarab_Damage = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Reaver_Capacity = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Gravitic_Drive = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Sensor_Array = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Gravitic_Boosters = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Khaydarin_Amulet = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Apial_Sensors = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Gravitic_Thrusters = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Carrier_Capacity = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Khaydarin_Core = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Argus_Jewel = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Argus_Talisman = 45 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Caduceus_Reactor = 46 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Chitinous_Plating = 47 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Anabolic_Synthesis = 48 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Charon_Boosters = 49 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType None = 50 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UpgradeType Unknown = 51 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.PlayerType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.PlayerType None = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType Computer = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType Player = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType RescuePassive = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType EitherPreferComputer = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType EitherPreferHuman = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType Neutral = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType Closed = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType PlayerLeft = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType ComputerLeft = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.PlayerType Unknown = 10 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.UnitType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.UnitType Terran_Marine = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Ghost = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Vulture = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Goliath = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Goliath_Turret = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Siege_Tank_Tank_Mode = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Siege_Tank_Tank_Mode_Turret = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_SCV = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Wraith = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Science_Vessel = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Gui_Montag = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Dropship = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Battlecruiser = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Vulture_Spider_Mine = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Nuclear_Missile = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Civilian = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Sarah_Kerrigan = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Alan_Schezar = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Alan_Schezar_Turret = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Jim_Raynor_Vulture = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Jim_Raynor_Marine = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Tom_Kazansky = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Magellan = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Edmund_Duke_Tank_Mode = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Edmund_Duke_Tank_Mode_Turret = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Edmund_Duke_Siege_Mode = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Edmund_Duke_Siege_Mode_Turret = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Arcturus_Mengsk = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Hyperion = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Norad_II = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Siege_Tank_Siege_Mode = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Siege_Tank_Siege_Mode_Turret = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Firebat = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Spell_Scanner_Sweep = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Medic = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Larva = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Egg = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Zergling = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Hydralisk = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Ultralisk = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Broodling = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Drone = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Overlord = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Mutalisk = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Guardian = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Queen = 45 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Defiler = 46 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Scourge = 47 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Torrasque = 48 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Matriarch = 49 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Infested_Terran = 50 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Infested_Kerrigan = 51 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Unclean_One = 52 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Hunter_Killer = 53 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Devouring_One = 54 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Kukulza_Mutalisk = 55 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Kukulza_Guardian = 56 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Yggdrasill = 57 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Valkyrie = 58 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Cocoon = 59 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Corsair = 60 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Dark_Templar = 61 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Devourer = 62 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Dark_Archon = 63 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Probe = 64 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Zealot = 65 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Dragoon = 66 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_High_Templar = 67 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Archon = 68 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Shuttle = 69 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Scout = 70 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Arbiter = 71 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Carrier = 72 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Interceptor = 73 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Dark_Templar = 74 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Zeratul = 75 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Tassadar_Zeratul_Archon = 76 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Fenix_Zealot = 77 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Fenix_Dragoon = 78 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Tassadar = 79 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Mojo = 80 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Warbringer = 81 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Gantrithor = 82 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Reaver = 83 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Observer = 84 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Scarab = 85 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Danimoth = 86 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Aldaris = 87 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Artanis = 88 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Rhynadon = 89 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Bengalaas = 90 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Cargo_Ship = 91 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Mercenary_Gunship = 92 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Scantid = 93 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Kakaru = 94 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Ragnasaur = 95 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Critter_Ursadon = 96 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Lurker_Egg = 97 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Raszagal = 98 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Samir_Duran = 99 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Alexei_Stukov = 100 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Map_Revealer = 101 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Gerard_DuGalle = 102 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Lurker = 103 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Hero_Infested_Duran = 104 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Spell_Disruption_Web = 105 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Command_Center = 106 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Comsat_Station = 107 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Nuclear_Silo = 108 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Supply_Depot = 109 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Refinery = 110 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Barracks = 111 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Academy = 112 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Factory = 113 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Starport = 114 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Control_Tower = 115 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Science_Facility = 116 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Covert_Ops = 117 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Physics_Lab = 118 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Terran1 = 119 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Machine_Shop = 120 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Terran2 = 121 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Engineering_Bay = 122 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Armory = 123 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Missile_Turret = 124 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Terran_Bunker = 125 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Crashed_Norad_II = 126 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Ion_Cannon = 127 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Uraj_Crystal = 128 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Khalis_Crystal = 129 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Infested_Command_Center = 130 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Hatchery = 131 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Lair = 132 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Hive = 133 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Nydus_Canal = 134 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Hydralisk_Den = 135 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Defiler_Mound = 136 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Greater_Spire = 137 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Queens_Nest = 138 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Evolution_Chamber = 139 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Ultralisk_Cavern = 140 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Spire = 141 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Spawning_Pool = 142 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Creep_Colony = 143 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Spore_Colony = 144 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Zerg1 = 145 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Sunken_Colony = 146 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Overmind_With_Shell = 147 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Overmind = 148 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Zerg_Extractor = 149 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Mature_Chrysalis = 150 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Cerebrate = 151 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Cerebrate_Daggoth = 152 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Zerg2 = 153 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Nexus = 154 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Robotics_Facility = 155 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Pylon = 156 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Assimilator = 157 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Protoss1 = 158 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Observatory = 159 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Gateway = 160 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Protoss2 = 161 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Photon_Cannon = 162 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Citadel_of_Adun = 163 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Cybernetics_Core = 164 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Templar_Archives = 165 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Forge = 166 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Stargate = 167 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Stasis_Cell_Prison = 168 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Fleet_Beacon = 169 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Arbiter_Tribunal = 170 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Robotics_Support_Bay = 171 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Protoss_Shield_Battery = 172 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Khaydarin_Crystal_Form = 173 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Protoss_Temple = 174 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_XelNaga_Temple = 175 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Resource_Mineral_Field = 176 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Resource_Mineral_Field_Type_2 = 177 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Resource_Mineral_Field_Type_3 = 178 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Cave = 179 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Cave_In = 180 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Cantina = 181 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Mining_Platform = 182 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Independant_Command_Center = 183 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Independant_Starport = 184 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Independant_Jump_Gate = 185 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Ruins = 186 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Khaydarin_Crystal_Formation = 187 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Resource_Vespene_Geyser = 188 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Warp_Gate = 189 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Psi_Disrupter = 190 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Zerg_Marker = 191 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Terran_Marker = 192 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unused_Protoss_Marker = 193 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Zerg_Beacon = 194 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Terran_Beacon = 195 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Protoss_Beacon = 196 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Zerg_Flag_Beacon = 197 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Terran_Flag_Beacon = 198 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Protoss_Flag_Beacon = 199 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Power_Generator = 200 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Overmind_Cocoon = 201 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Spell_Dark_Swarm = 202 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Floor_Missile_Trap = 203 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Floor_Hatch = 204 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Upper_Level_Door = 205 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Right_Upper_Level_Door = 206 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Pit_Door = 207 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Right_Pit_Door = 208 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Floor_Gun_Trap = 209 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Wall_Missile_Trap = 210 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Wall_Flame_Trap = 211 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Right_Wall_Missile_Trap = 212 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Right_Wall_Flame_Trap = 213 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Special_Start_Location = 214 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Flag = 215 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Young_Chrysalis = 216 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Psi_Emitter = 217 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Data_Disk = 218 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Khaydarin_Crystal = 219 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Mineral_Cluster_Type_1 = 220 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Mineral_Cluster_Type_2 = 221 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Protoss_Gas_Orb_Type_1 = 222 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Protoss_Gas_Orb_Type_2 = 223 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Zerg_Gas_Sac_Type_1 = 224 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Zerg_Gas_Sac_Type_2 = 225 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Terran_Gas_Tank_Type_1 = 226 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Powerup_Terran_Gas_Tank_Type_2 = 227 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType None = 228 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType AllUnits = 229 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Men = 230 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Buildings = 231 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Factories = 232 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType Unknown = 233 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitType MAX = 234 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.OrderType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.OrderType Die = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Stop = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Guard = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PlayerGuard = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType TurretGuard = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType BunkerGuard = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Move = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType AttackUnit = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType AttackTile = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Hover = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType AttackMove = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType InfestedCommandCenter = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType UnusedNothing = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType UnusedPowerup = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType TowerGuard = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType VultureMine = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Nothing = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastInfestation = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType InfestingCommandCenter = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PlaceBuilding = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CreateProtossBuilding = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ConstructingBuilding = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Repair = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PlaceAddon = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType BuildAddon = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Train = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RallyPointUnit = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RallyPointTile = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ZergBirth = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ZergUnitMorph = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ZergBuildingMorph = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType IncompleteBuilding = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType BuildNydusExit = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType EnterNydusCanal = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Follow = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Carrier = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ReaverCarrierMove = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CarrierIgnore2 = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Reaver = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType TrainFighter = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType InterceptorAttack = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ScarabAttack = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RechargeShieldsUnit = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RechargeShieldsBattery = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ShieldBattery = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType InterceptorReturn = 45 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType BuildingLand = 46 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType BuildingLiftOff = 47 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType DroneLiftOff = 48 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType LiftingOff = 49 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ResearchTech = 50 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Upgrade = 51 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Larva = 52 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType SpawningLarva = 53 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Harvest1 = 54 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Harvest2 = 55 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MoveToGas = 56 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType WaitForGas = 57 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HarvestGas = 58 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ReturnGas = 59 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MoveToMinerals = 60 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType WaitForMinerals = 61 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MiningMinerals = 62 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Harvest3 = 63 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Harvest4 = 64 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ReturnMinerals = 65 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Interrupted = 66 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType EnterTransport = 67 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PickupIdle = 68 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PickupTransport = 69 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PickupBunker = 70 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Pickup4 = 71 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PowerupIdle = 72 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Sieging = 73 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Unsieging = 74 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType InitCreepGrowth = 75 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType SpreadCreep = 76 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType StoppingCreepGrowth = 77 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType GuardianAspect = 78 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ArchonWarp = 79 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CompletingArchonSummon = 80 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HoldPosition = 81 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Cloak = 82 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Decloak = 83 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Unload = 84 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MoveUnload = 85 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType FireYamatoGun = 86 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastLockdown = 87 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Burrowing = 88 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Burrowed = 89 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Unburrowing = 90 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastDarkSwarm = 91 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastParasite = 92 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastSpawnBroodlings = 93 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastEmpShockwave = 94 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukeWait = 95 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukeTrain = 96 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukeLaunch = 97 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukePaint = 98 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukeUnit = 99 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastNuclearStrike = 100 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType NukeTrack = 101 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CloakNearbyUnits = 102 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType PlaceMine = 103 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RightClickAction = 104 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastRecall = 105 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Teleport = 106 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastScannerSweep = 107 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Scanner = 108 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastDefensiveMatrix = 109 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastPsionicStorm = 110 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastIrradiate = 111 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastPlague = 112 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastConsume = 113 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastEnsnare = 114 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastStasisField = 115 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastHallucination = 116 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Hallucination2 = 117 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ResetCollision = 118 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Patrol = 119 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CtfcopInit = 120 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CtfcopStarted = 121 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Ctfcop2 = 122 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ComputerAi = 123 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType AtkMoveEp = 124 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HarassMove = 125 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType AiPatrol = 126 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType GuardPost = 127 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RescuePassive = 128 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Neutral = 129 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType ComputerReturn = 130 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType SelfDestructing = 131 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Critter = 132 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HiddenGun = 133 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType OpenDoor = 134 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CloseDoor = 135 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HideTrap = 136 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType RevealTrap = 137 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType EnableDoodad = 138 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType DisableDoodad = 139 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType WarpIn = 140 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Medic = 141 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MedicHeal = 142 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType HealMove = 143 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType MedicHealToIdle = 144 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastRestoration = 145 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastDisruptionWeb = 146 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastMindControl = 147 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType DarkArchonMeld = 148 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastFeedback = 149 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastOpticalFlare = 150 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType CastMaelstrom = 151 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType JunkYardDog = 152 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Fatal = 153 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType None = 154 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.OrderType Unknown = 155 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.UnitSizeType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.UnitSizeType Independent = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitSizeType Small = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitSizeType Medium = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitSizeType Large = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitSizeType None = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitSizeType Unknown = 5 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.UnitCommandType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.UnitCommandType AttackMove = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType AttackUnit = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Build = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType BuildAddon = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Train = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Morph = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Research = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Upgrade = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType SetRallyPosition = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType SetRallyUnit = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Move = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Patrol = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType HoldPosition = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Stop = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Follow = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Gather = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType ReturnCargo = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Repair = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Burrow = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Unburrow = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Cloak = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Decloak = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Siege = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Unsiege = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Lift = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Land = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Load = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Unload = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType UnloadAll = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType UnloadAllPosition = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType RightClickPosition = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType RightClickUnit = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType HaltConstruction = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelConstruction = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelAddon = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelTrain = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelTrainSlot = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelMorph = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelResearch = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType CancelUpgrade = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType UseTech = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType UseTechPosition = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType UseTechUnit = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType PlaceCop = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType None = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.UnitCommandType Unknown = 45 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.Flag: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.Flag CompleteMapInformation = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Flag UserInput = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Flag Max = 2 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.GameType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.GameType Melee = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType FreeForAll = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType OneOnOne = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType CaptureTheFlag = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType Greed = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType Slaughter = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType SuddenDeath = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType Ladder = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType UseMapSettings = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType TeamMelee = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType TeamFreeForAll = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType TeamCaptureTheFlag = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType TopVsBottom = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType None = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.GameType Unknown = 14 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.Latency: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.Latency SinglePlayer = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency LanLow = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency LanMedium = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency LanHigh = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency BattlenetLow = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency BattlenetMedium = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Latency BattlenetHigh = 24 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.MouseButton: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.MouseButton Left = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.MouseButton Right = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.MouseButton Middle = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.MouseButton Max = 3 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.Key: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.Key Lbutton = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Rbutton = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Cancel = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Mbutton = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Xbutton1 = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Xbutton2 = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Back = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Tab = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Clear = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Return = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Shift = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Control = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Menu = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Pause = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Capital = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Kana = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Hangeul = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Hangul = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Junja = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Final = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Hanja = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Kanji = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Escape = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Convert = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Nonconvert = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Accept = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Modechange = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Space = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Prior = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Next = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key End = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Home = 36 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Left = 37 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Up = 38 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Right = 39 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Down = 40 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Select = 41 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Print = 42 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Execute = 43 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Snapshot = 44 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Insert = 45 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Delete = 46 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Help = 47 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B0 = 48 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B1 = 49 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B2 = 50 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B3 = 51 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B4 = 52 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B5 = 53 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B6 = 54 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B7 = 55 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B8 = 56 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B9 = 57 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key A = 65 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key B = 66 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key C = 67 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key D = 68 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key E = 69 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F = 70 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key G = 71 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key H = 72 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key I = 73 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key J = 74 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key K = 75 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key L = 76 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key M = 77 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key N = 78 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key O = 79 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key P = 80 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Q = 81 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key R = 82 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key S = 83 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key T = 84 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key U = 85 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key V = 86 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key W = 87 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key X = 88 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Y = 89 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Z = 90 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Lwin = 91 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Rwin = 92 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Apps = 93 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Sleep = 95 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad0 = 96 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad1 = 97 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad2 = 98 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad3 = 99 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad4 = 100 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad5 = 101 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad6 = 102 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad7 = 103 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad8 = 104 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numpad9 = 105 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Multiply = 106 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Add = 107 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Separator = 108 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Subtract = 109 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Decimal = 110 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Divide = 111 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F1 = 112 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F2 = 113 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F3 = 114 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F4 = 115 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F5 = 116 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F6 = 117 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F7 = 118 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F8 = 119 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F9 = 120 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F10 = 121 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F11 = 122 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F12 = 123 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F13 = 124 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F14 = 125 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F15 = 126 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F16 = 127 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F17 = 128 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F18 = 129 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F19 = 130 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F20 = 131 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F21 = 132 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F22 = 133 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F23 = 134 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key F24 = 135 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Numlock = 144 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Scroll = 145 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemNecEqual = 146 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFjJisho = 146 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFjMasshou = 147 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFjTouroku = 148 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFjLoya = 149 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFjRoya = 150 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Lshift = 160 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Rshift = 161 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Lcontrol = 162 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Rcontrol = 163 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Lmenu = 164 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Rmenu = 165 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserBack = 166 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserForward = 167 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserRefresh = 168 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserStop = 169 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserSearch = 170 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserFavorites = 171 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key BrowserHome = 172 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key VolumeMute = 173 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key VolumeDown = 174 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key VolumeUp = 175 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key MediaNextTrack = 176 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key MediaPrevTrack = 177 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key MediaStop = 178 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key MediaPlayPause = 179 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key LaunchMail = 180 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key LaunchMediaSelect = 181 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key LaunchApp1 = 182 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key LaunchApp2 = 183 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem1 = 186 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemPlus = 187 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemComma = 188 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemMinus = 189 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemPeriod = 190 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem2 = 191 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem3 = 192 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem4 = 219 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem5 = 220 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem6 = 221 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem7 = 222 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem8 = 223 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemAx = 225 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Oem102 = 226 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key IcoHelp = 227 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Ico00 = 228 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Processkey = 229 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key IcoClear = 230 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Packet = 231 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemReset = 233 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemJump = 234 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemPa1 = 235 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemPa2 = 236 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemPa3 = 237 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemWsctrl = 238 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemCusel = 239 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemAttn = 240 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemFinish = 241 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemCopy = 242 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemAuto = 243 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemEnlw = 244 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemBacktab = 245 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Attn = 246 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Crsel = 247 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Exsel = 248 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Ereof = 249 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Play = 250 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Zoom = 251 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Noname = 252 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Pa1 = 253 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key OemClear = 254 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.Key Max = 255 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.ErrorType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.ErrorType UnitDoesNotExist = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnitNotVisible = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnitNotOwned = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnitBusy = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType IncompatibleUnitType = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType IncompatibleTechType = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType IncompatibleState = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType AlreadyResearched = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType FullyUpgraded = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType CurrentlyResearching = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType CurrentlyUpgrading = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientMinerals = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientGas = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientSupply = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientEnergy = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientTech = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientAmmo = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InsufficientSpace = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InvalidTilePosition = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnbuildableLocation = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnreachableLocation = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType OutOfRange = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType UnableToHit = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType AccessDenied = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType FileNotFound = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType InvalidParameter = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType None = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.ErrorType Unknown = 27 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.CoordinateType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.CoordinateType Screen = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.CoordinateType Map = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.CoordinateType Mouse = 3 : Public, Static, Literal, HasDefault
+Struct BWAPI.Game: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Abstract, Sealed, BeforeFieldInit
+  :System.ValueType
+Class BroodWar.Util: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
+  Methods:
+    Log(String): PrivateScope, Public, Static, HideBySig
+    LogException(String, Exception): PrivateScope, Public, Static, HideBySig
+    ConvertPlayer(Void*): PrivateScope, Public, Static, HideBySig
+    ConvertUnit(Void*): PrivateScope, Public, Static, HideBySig
+    ConvertPosition(Void*): PrivateScope, Public, Static, HideBySig
+    LoadGameInstance(Game*): PrivateScope, Public, Static, HideBySig
+Struct BroodWar.Api.Enum.BulletType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.BulletType Melee = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType FusionCutterHit = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType GaussRifleHit = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType C10CanisterRifleHit = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType GeminiMissiles = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType FragmentationGrenade = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType LongboltMissile = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType AtsAtaLaserBattery = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType BurstLasers = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType ArcliteShockCannonHit = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType EmpMissile = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType DualPhotonBlastersHit = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType ParticleBeamHit = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType AntiMatterMissile = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType PulseCannon = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType PsionicShockwaveHit = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType PsionicStorm = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType YamatoGun = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType PhaseDisruptor = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType StaStsCannonOverlay = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType SunkenColonyTentacle = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType AcidSpore = 21 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType GlaveWurm = 22 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType SeekerSpores = 23 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType QueenSpellCarrier = 24 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType PlagueCloud = 25 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType Consume = 26 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType Ensnare = 27 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType NeedleSpineHit = 28 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType Invisible = 29 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType OpticalFlareGrenade = 30 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType HaloRockets = 31 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType SubterraneanSpines = 32 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType CorrosiveAcidShot = 33 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType NeutronFlare = 34 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType None = 35 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.BulletType Unknown = 36 : Public, Static, Literal, HasDefault
+Struct BroodWar.Api.Enum.TournamentAction: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Enum.TournamentAction EnableFlag = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction ChangeRace = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction StartGame = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction PauseGame = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction ResumeGame = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction LeaveGame = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction RestartGame = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetLocalSpeed = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetTextSize = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetLatCom = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetGUI = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetMap = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetFrameSkip = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction Printf = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SendText = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Enum.TournamentAction SetCommandOptimizationLevel = 15 : Public, Static, Literal, HasDefault
+Class BroodWar.TournamentBase: AutoLayout, AnsiClass, Class, Public, Abstract, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    OnAction(TournamentAction, IntPtr): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    OnFirstAdvertisement(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+Class BroodWar.Api.Bullet: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+  Properties:
+    Boolean Exists 'get ' : 
+    Int32 RemoveTimer 'get ' : 
+    BroodWar.Api.Position TargetPosition 'get ' : 
+    BroodWar.Api.Unit Target 'get ' : 
+    Double VelocityY 'get ' : 
+    Double VelocityX 'get ' : 
+    Double Angle 'get ' : 
+    BroodWar.Api.Position Position 'get ' : 
+    BroodWar.Api.Unit Source 'get ' : 
+    BroodWar.Api.Player Player 'get ' : 
+    BroodWar.Api.Enum.BulletType Type 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    TypeEquals(BulletType): PrivateScope, Public, HideBySig
+    get_Player(): PrivateScope, Public, HideBySig, SpecialName
+    get_Source(): PrivateScope, Public, HideBySig, SpecialName
+    get_Position(): PrivateScope, Public, HideBySig, SpecialName
+    get_Angle(): PrivateScope, Public, HideBySig, SpecialName
+    get_VelocityX(): PrivateScope, Public, HideBySig, SpecialName
+    get_VelocityY(): PrivateScope, Public, HideBySig, SpecialName
+    get_Target(): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetPosition(): PrivateScope, Public, HideBySig, SpecialName
+    get_RemoveTimer(): PrivateScope, Public, HideBySig, SpecialName
+    get_Exists(): PrivateScope, Public, HideBySig, SpecialName
+    IsVisible(Player): PrivateScope, Public, HideBySig
+    IsVisible(): PrivateScope, Public, HideBySig
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Bullet): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Bullet, Bullet): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Bullet, Bullet): PrivateScope, Public, Static, HideBySig, SpecialName
+Class BroodWar.Api.Force: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  Interfaces:
+    BroodWar.Api.IIdentifiedObject
+  Properties:
+    System.Collections.Generic.HashSet`1[BroodWar.Api.Player] Players 'get ' : 
+    System.String Name 'get ' : 
+    Int32 Id   'get ' : 
+  Methods:
+    get_Id(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Name(): PrivateScope, Public, HideBySig, SpecialName
+    get_Players(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Final, Virtual, HideBySig
+    Equals(Force): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Final, Virtual, HideBySig
+    op_Equality(Force, Force): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(Force, Force): PrivateScope, Public, Static, HideBySig, SpecialName
+Class BroodWar.Api.WalkPosition: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(BroodWar.Api.WalkPosition): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Boolean IsUnknown 'get ' : 
+    Boolean IsNone 'get ' : 
+    Boolean IsInvalid 'get ' : 
+    Boolean IsValid 'get ' : 
+    Int32 Y    'get ' : 
+    Int32 X    'get ' : 
+  Methods:
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsValid(): PrivateScope, Public, HideBySig, SpecialName
+    CalcDistance(WalkPosition): PrivateScope, Public, HideBySig
+    CalcApproximateDistance(WalkPosition): PrivateScope, Public, HideBySig
+    CalcLength(): PrivateScope, Public, HideBySig
+    MakeValid(): PrivateScope, Public, HideBySig
+    get_IsInvalid(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsNone(): PrivateScope, Public, HideBySig, SpecialName
+    get_IsUnknown(): PrivateScope, Public, HideBySig, SpecialName
+    GetHashCode(): PrivateScope, Public, Virtual, HideBySig
+    Equals(WalkPosition): PrivateScope, Public, HideBySig
+    Equals(Object): PrivateScope, Public, Virtual, HideBySig
+    op_Equality(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Inequality(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_LessThan(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Addition(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Subtraction(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Multiply(WalkPosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_Division(WalkPosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_AdditionAssignment(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_SubtractionAssignment(WalkPosition, WalkPosition): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_MultiplicationAssignment(WalkPosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    op_DivisionAssignment(WalkPosition, Int32): PrivateScope, Public, Static, HideBySig, SpecialName
+    Rescale(TilePosition): PrivateScope, Public, Static, HideBySig
+    Rescale(Position): PrivateScope, Public, Static, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class BroodWar.Api.Client.Client: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
+  Properties:
+    Boolean IsConnected 'get ' : 
+  Methods:
+    get_IsConnected(): PrivateScope, Public, Static, HideBySig, SpecialName
+    Connect(): PrivateScope, Public, Static, HideBySig
+    Disconnect(): PrivateScope, Public, Static, HideBySig
+    Update(): PrivateScope, Public, Static, HideBySig
+Class BroodWar.Api.Client.Command: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(BroodWar.Api.Client.CommandType, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Int32 Value2 'get set' : 
+    Int32 Value1 'get set' : 
+    BroodWar.Api.Client.CommandType Type 'get set' : 
+  Methods:
+    get_Type(): PrivateScope, Public, HideBySig, SpecialName
+    set_Type(CommandType): PrivateScope, Public, HideBySig, SpecialName
+    get_Value1(): PrivateScope, Public, HideBySig, SpecialName
+    set_Value1(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Value2(): PrivateScope, Public, HideBySig, SpecialName
+    set_Value2(Int32): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Struct BroodWar.Api.Client.CommandType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    BroodWar.Api.Client.CommandType None = 0 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetScreenPosition = 1 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType PingMinimap = 2 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType EnableFlag = 3 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType Printf = 4 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SendText = 5 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType ChangeRace = 6 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType StartGame = 7 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType PauseGame = 8 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType ResumeGame = 9 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType LeaveGame = 10 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType RestartGame = 11 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetLocalSpeed = 12 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetLatCom = 13 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetGui = 14 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetFrameSkip = 15 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetMap = 16 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetAllies = 17 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetVision = 18 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetCommandOptimizerLevel = 19 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetReplayVision = 20 : Public, Static, Literal, HasDefault
+    BroodWar.Api.Client.CommandType SetRevealAll = 21 : Public, Static, Literal, HasDefault
+Class BroodWar.Api.Client.UnitCommand: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    Int32 Extra 'get set' : 
+    Int32 Y    'get set' : 
+    Int32 X    'get set' : 
+    Int32 TargetIndex 'get set' : 
+    Int32 UnitIndex 'get set' : 
+    BroodWar.Api.Enum.UnitCommandType CommandType 'get set' : 
+  Methods:
+    get_CommandType(): PrivateScope, Public, HideBySig, SpecialName
+    set_CommandType(UnitCommandType): PrivateScope, Public, HideBySig, SpecialName
+    get_UnitIndex(): PrivateScope, Public, HideBySig, SpecialName
+    set_UnitIndex(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_TargetIndex(): PrivateScope, Public, HideBySig, SpecialName
+    set_TargetIndex(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_X(): PrivateScope, Public, HideBySig, SpecialName
+    set_X(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Y(): PrivateScope, Public, HideBySig, SpecialName
+    set_Y(Int32): PrivateScope, Public, HideBySig, SpecialName
+    get_Extra(): PrivateScope, Public, HideBySig, SpecialName
+    set_Extra(Int32): PrivateScope, Public, HideBySig, SpecialName
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
