@@ -58,7 +58,33 @@
             if (Game.CanMake(UnitType.Protoss_Dragoon, null)) TrainDragoon();
 
             var myFightersInBase = MyFighters().Where(f => IsInBase(f)).Where(f => f.IsIdle).ToList();
+
+            // send dragon to nearest chokepoint _analyzedMap.ChokeRegions.Where(region => Unit unit.TilePosition.CalcApproximateDistance  Game.Self.StartLocation)
+
+            // move fighters into chokepoint from nbwta map analyzer if (myFightersInBase.Count > 0) myFightersInBase.ForEach(f => f.Move());
+
+
             if (myFightersInBase.Count >= 12) ShiftAttackAllStartLocations(myFightersInBase);
+
+            if (Game.CanMake(UnitType.Protoss_Photon_Cannon, null) &&
+                !MyBuildingsOfType(UnitType.Protoss_Photon_Cannon).Any())
+                Build(UnitType.Protoss_Photon_Cannon);
+            if (Game.CanMake(UnitType.Protoss_Citadel_of_Adun, null) && !MyBuildingsOfType(UnitType.Protoss_Citadel_of_Adun).Any())
+                Build(UnitType.Protoss_Citadel_of_Adun);
+
+            if (Game.CanUpgrade(UpgradeType.Leg_Enhancements, null, false))
+            {
+                var upgradeType = Upgrade.AllUpgrades.First(u => u.Type == UpgradeType.Leg_Enhancements);
+                MyBuildingsOfType(UnitType.Protoss_Citadel_of_Adun).First().PerformUpgrade(upgradeType);
+            }
+
+            if (MyBuildingsOfType(UnitType.Protoss_Gateway).Count < 5) Build(UnitType.Protoss_Gateway);
+
+            if(MyBuildingsOfType(UnitType.Protoss_Gateway).Count >= 5)
+                foreach (var gateway in MyBuildingsOfType(UnitType.Protoss_Gateway))
+                {
+                    if (!gateway.TrainingQueue.Any()) gateway.Train(UnitType.Protoss_Zealot);
+                }
         }
 
         private static void ShiftAttackAllStartLocations(List<Unit> myFighters)
