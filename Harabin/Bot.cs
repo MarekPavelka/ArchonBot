@@ -93,7 +93,7 @@
                 .Select(loc => new Position(loc.X * 32, loc.Y * 32)) // TilePosition (build tile) -> Position  1:32
                 .ToList();
 
-            myFighters.ForEach(x => notMyBaseStartLocations.ForEach(position => x.Attack(position, true)));
+            myFighters.ForEach(x => notMyBaseStartLocations.ForEach(position => x.Attack(position, true)));  
         }
 
         void OrderAllIdleWorkersToGatherClosestMineral()
