@@ -89,7 +89,7 @@
 
         private static void ShiftAttackAllStartLocations(List<Unit> myFighters)
         {
-            var notMyBaseStartLocations = Game.StartLocations.Where(sl => sl != Game.Self.StartLocation)
+            var notMyBaseStartLocations = Game.StartLocations.Where(sl => sl != Game.Self.StartLocation) 
                 .Select(loc => new Position(loc.X * 32, loc.Y * 32)) // TilePosition (build tile) -> Position  1:32
                 .ToList();
 
